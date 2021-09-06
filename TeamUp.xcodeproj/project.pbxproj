@@ -25,7 +25,6 @@
 		F95F53F326E4DF0F0047D1A7 /* ChatListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D026E4DF0F0047D1A7 /* ChatListVC.swift */; };
 		F95F53F426E4DF0F0047D1A7 /* ChatUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D126E4DF0F0047D1A7 /* ChatUserList.swift */; };
 		F95F53F526E4DF0F0047D1A7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D326E4DF0F0047D1A7 /* NotificationVC.swift */; };
-		F95F53F626E4DF0F0047D1A7 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D526E4DF0F0047D1A7 /* SignUPVC.swift */; };
 		F95F53F726E4DF0F0047D1A7 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D726E4DF0F0047D1A7 /* WelcomeVC.swift */; };
 		F95F53F826E4DF0F0047D1A7 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53D926E4DF0F0047D1A7 /* LoginVC.swift */; };
 		F95F53F926E4DF0F0047D1A7 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53DB26E4DF0F0047D1A7 /* LocationVC.swift */; };
@@ -44,6 +43,10 @@
 		F95F540E26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */; };
 		F95F540F26E4DF4F0047D1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95F540926E4DF4F0047D1A7 /* Main.storyboard */; };
 		F963907CE98E9081A7934107 /* Pods_TeamUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAF225FB3A5C3C4BF13928B /* Pods_TeamUpTests.framework */; };
+		F993E65926E69CBA007D8E99 /* StepFourSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */; };
+		F993E65A26E69CBA007D8E99 /* StepThreeSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */; };
+		F993E65B26E69CBA007D8E99 /* StepTwoSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */; };
+		F993E65C26E69CBA007D8E99 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65826E69CBA007D8E99 /* SignUPVC.swift */; };
 		F9B4629726E49B6000D47656 /* RDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4629626E49B6000D47656 /* RDTextView.swift */; };
 		F9B462A526E49D1A00D47656 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4629A26E49D1A00D47656 /* LocationSearchResultsViewController.swift */; };
 		F9B462A626E49D1A00D47656 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B4629B26E49D1A00D47656 /* Location.swift */; };
@@ -111,7 +114,6 @@
 		F95F53D026E4DF0F0047D1A7 /* ChatListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListVC.swift; sourceTree = "<group>"; };
 		F95F53D126E4DF0F0047D1A7 /* ChatUserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUserList.swift; sourceTree = "<group>"; };
 		F95F53D326E4DF0F0047D1A7 /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
-		F95F53D526E4DF0F0047D1A7 /* SignUPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
 		F95F53D726E4DF0F0047D1A7 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		F95F53D926E4DF0F0047D1A7 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F95F53DB26E4DF0F0047D1A7 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
@@ -129,6 +131,10 @@
 		F95F540726E4DF4F0047D1A7 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesCellTableViewCell.xib; sourceTree = "<group>"; };
 		F95F540A26E4DF4F0047D1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepFourSignUpVC.swift; sourceTree = "<group>"; };
+		F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepThreeSignUpVC.swift; sourceTree = "<group>"; };
+		F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTwoSignUpVC.swift; sourceTree = "<group>"; };
+		F993E65826E69CBA007D8E99 /* SignUPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
 		F9B4629626E49B6000D47656 /* RDTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDTextView.swift; sourceTree = "<group>"; };
 		F9B4629A26E49D1A00D47656 /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
 		F9B4629B26E49D1A00D47656 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -309,7 +315,7 @@
 				F95F53CD26E4DF0F0047D1A7 /* OtherInfo */,
 				F95F53CF26E4DF0F0047D1A7 /* ChatListTabbar */,
 				F95F53D226E4DF0F0047D1A7 /* Notification */,
-				F95F53D426E4DF0F0047D1A7 /* SignUpVC */,
+				F993E65126E69CBA007D8E99 /* SignUpVC */,
 				F95F53D626E4DF0F0047D1A7 /* WelcomeVC */,
 				F95F53D826E4DF0F0047D1A7 /* LoginVC */,
 				F95F53DA26E4DF0F0047D1A7 /* LocationView */,
@@ -381,14 +387,6 @@
 				F95F53D326E4DF0F0047D1A7 /* NotificationVC.swift */,
 			);
 			path = Notification;
-			sourceTree = "<group>";
-		};
-		F95F53D426E4DF0F0047D1A7 /* SignUpVC */ = {
-			isa = PBXGroup;
-			children = (
-				F95F53D526E4DF0F0047D1A7 /* SignUPVC.swift */,
-			);
-			path = SignUpVC;
 			sourceTree = "<group>";
 		};
 		F95F53D626E4DF0F0047D1A7 /* WelcomeVC */ = {
@@ -505,6 +503,41 @@
 				F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */,
 			);
 			path = XibFile;
+			sourceTree = "<group>";
+		};
+		F993E65126E69CBA007D8E99 /* SignUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				F993E65226E69CBA007D8E99 /* Step4 */,
+				F993E65426E69CBA007D8E99 /* Step3 */,
+				F993E65626E69CBA007D8E99 /* Step2 */,
+				F993E65826E69CBA007D8E99 /* SignUPVC.swift */,
+			);
+			path = SignUpVC;
+			sourceTree = "<group>";
+		};
+		F993E65226E69CBA007D8E99 /* Step4 */ = {
+			isa = PBXGroup;
+			children = (
+				F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */,
+			);
+			path = Step4;
+			sourceTree = "<group>";
+		};
+		F993E65426E69CBA007D8E99 /* Step3 */ = {
+			isa = PBXGroup;
+			children = (
+				F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */,
+			);
+			path = Step3;
+			sourceTree = "<group>";
+		};
+		F993E65626E69CBA007D8E99 /* Step2 */ = {
+			isa = PBXGroup;
+			children = (
+				F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */,
+			);
+			path = Step2;
 			sourceTree = "<group>";
 		};
 		F9B4629426E49B5200D47656 /* Utility */ = {
@@ -822,12 +855,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F993E65B26E69CBA007D8E99 /* StepTwoSignUpVC.swift in Sources */,
 				F9B462AB26E49D1A00D47656 /* ValidationManager.swift in Sources */,
 				F95F53F526E4DF0F0047D1A7 /* NotificationVC.swift in Sources */,
 				F95F540226E4DF0F0047D1A7 /* FavoriteVC.swift in Sources */,
 				F9B462A726E49D1A00D47656 /* LocationPickerViewController.swift in Sources */,
 				F9B462A826E49D1A00D47656 /* SearchHistoryManager.swift in Sources */,
-				F95F53F626E4DF0F0047D1A7 /* SignUPVC.swift in Sources */,
+				F993E65A26E69CBA007D8E99 /* StepThreeSignUpVC.swift in Sources */,
 				F9B462A526E49D1A00D47656 /* LocationSearchResultsViewController.swift in Sources */,
 				F9B462A626E49D1A00D47656 /* Location.swift in Sources */,
 				F95F53FA26E4DF0F0047D1A7 /* AddPostVC.swift in Sources */,
@@ -847,12 +881,14 @@
 				F95F53F726E4DF0F0047D1A7 /* WelcomeVC.swift in Sources */,
 				F95F53EF26E4DF0F0047D1A7 /* ViewProfileVC.swift in Sources */,
 				F9B4629726E49B6000D47656 /* RDTextView.swift in Sources */,
+				F993E65C26E69CBA007D8E99 /* SignUPVC.swift in Sources */,
 				18B3F27026E21E8F00235A87 /* AppDelegate.swift in Sources */,
 				F95F540026E4DF0F0047D1A7 /* ProfileVC.swift in Sources */,
 				F95F53F326E4DF0F0047D1A7 /* ChatListVC.swift in Sources */,
 				F9B462BB26E4A44A00D47656 /* UserDefaultExtension.swift in Sources */,
 				F9B462AE26E49D1A00D47656 /* TableViewExtension.swift in Sources */,
 				F95F53F926E4DF0F0047D1A7 /* LocationVC.swift in Sources */,
+				F993E65926E69CBA007D8E99 /* StepFourSignUpVC.swift in Sources */,
 				F95F540B26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.swift in Sources */,
 				F95F53FF26E4DF0F0047D1A7 /* SearchResultVC.swift in Sources */,
 				18B3F30F26E24E2900235A87 /* FloatRatingView.swift in Sources */,

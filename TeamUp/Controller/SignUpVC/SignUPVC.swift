@@ -17,7 +17,7 @@ class SignUPVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -26,7 +26,7 @@ class SignUPVC: UIViewController {
     }
     
     @IBAction func btnSignUp(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "GuardinInfoVC") as! GuardinInfoVC
+        let vc = storyboard?.instantiateViewController(identifier: "StepTwoSignUpVC") as! StepTwoSignUpVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -22,8 +22,9 @@ class SettingsVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,15 +38,19 @@ class SettingsVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
         }else if indexPath.row == 3 {
             cell.lblTitle.text! = "About the App"
         }else if indexPath.row == 4 {
+            cell.lblTitle.text! = "Change password"
+        }else if indexPath.row == 5 {
             cell.lblTitle.text! = "LogOut"
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 {
-            self.navigationController?.popToRootViewController(animated: true)
+            let vc = storyboard?.instantiateViewController(identifier: "ChangePasswordVc") as! ChangePasswordVc
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if indexPath.row == 5 {
+            AppSharedData.setUserInfo(dictInfo: nil)
         }
     }
     

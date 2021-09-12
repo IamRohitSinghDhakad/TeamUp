@@ -30,7 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
+        let dict = AppSharedData.getUserInfo()
+        if dict["user_id"] != nil {
+        let mainVC = UIStoryboard.init(name: "Main", bundle: nil)
+        let rootVC = mainVC.instantiateViewController(withIdentifier: "TabVC")
+        self.window?.rootViewController = rootVC
+        self.window?.makeKeyAndVisible()
+        }
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true

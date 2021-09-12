@@ -14,7 +14,6 @@ let objAppShareData : AppSharedData  = AppSharedData.sharedObject()
 class AppSharedData: NSObject {
 
     //MARK: - Shared object
-    
     private static var sharedManager: AppSharedData = {
         let manager = AppSharedData()
         return manager
@@ -30,7 +29,21 @@ class AppSharedData: NSObject {
     var strFirebaseToken = ""
     var isFromNotification = Bool()
     var isNotificationDict = [String:Any]()
+    var catId = ""
+    var userFname = ""
+    var userLastname = ""
+    var email = ""
+    var password = ""
+    var phone = ""
+    var dob = ""
+    var address = ""
+    var age = ""
+    var userName = ""
+    var relationShip = ""
     
+    static let userInfo = "Infinote"
+    
+
     open var isLoggedIn: Bool {
         get {
             if (UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.userInfo) as? [String : Any]) != nil {
@@ -41,10 +54,25 @@ class AppSharedData: NSObject {
         }
     }
     
+    
+    class func setUserInfo(dictInfo: NSDictionary?){
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(dictInfo, forKey: AppSharedData.userInfo)
+    }
+    
+    class func getUserInfo() -> NSDictionary {
+        if let dict = UserDefaults.standard.dictionary(forKey: AppSharedData.userInfo) {
+            let dictData = dict as NSDictionary
+            return dictData
+        }
+        return NSDictionary()
+    }
+    
     // MARK: - saveUpdateUserInfoFromAppshareData ---------------------
     func SaveUpdateUserInfoFromAppshareData(userDetail:[String:Any])
     {
         let outputDict = self.removeNSNull(from:userDetail)
+        
         UserDefaults.standard.set(outputDict, forKey: UserDefaults.KeysDefault.userInfo)
         
     }
@@ -52,7 +80,9 @@ class AppSharedData: NSObject {
     // MARK: - FetchUserInfoFromAppshareData -------------------------
     func fetchUserInfoFromAppshareData()
     {
+        
         if let userDic = UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.userInfo) as? [String : Any]{
+            
             UserDetail = userDetailModel.init(dict: userDic)
         }
     }

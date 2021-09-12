@@ -12,15 +12,11 @@ class StepFourSignUpVC: UIViewController {
     @IBOutlet var tfAge: UITextField!
     @IBOutlet var tfAddress: UITextField!
     
-    
     var datePicker = UIDatePicker()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.showDatePicker()
-        // Do any additional setup after loading the view.
     }
     
 
@@ -35,18 +31,23 @@ class StepFourSignUpVC: UIViewController {
     }
     
     @IBAction func btnSubmit(_ sender: Any) {
+        if tfAge.text! == "" {
+            objAlert.showAlert(message: MessageConstant.BlankDOB, title: "", controller: self)
+        }else if tfAddress.text! == "" {
+            objAlert.showAlert(message: MessageConstant.Blankaddress, title: "", controller: self)
+        }else{
         let vc = storyboard?.instantiateViewController(identifier: "GuardinInfoVC") as! GuardinInfoVC
+            AppSharedData.sharedObject().age = tfAge.text!
+            AppSharedData.sharedObject().address = tfAddress.text!
         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-
-
 }
 
 
 extension StepFourSignUpVC{
     
     func showDatePicker(){
-        
         let screenWidth = UIScreen.main.bounds.width
         datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))//1
         datePicker.datePickerMode = .date //2

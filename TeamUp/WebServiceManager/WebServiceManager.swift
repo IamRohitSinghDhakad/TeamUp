@@ -129,11 +129,6 @@ extension WebServiceManager {
             "authToken": strAuthToken ,
             "Accept": "application/json"]
         
-        //  content-type →application/json
-        // "Accept": "application/json",
-        //        WsHeader.deviceId:strUdidi,
-        //        WsHeader.deviceType:"1",
-        //        WsHeader.deviceTimeZone: currentTimeZone
         var StrCompleteUrl = ""
         
         if strCustomValidation ==  WsParamsType.PathVariable{

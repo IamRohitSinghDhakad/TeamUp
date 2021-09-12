@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class LoginVC: UIViewController {
 
     @IBOutlet weak var tfEmail: UITextField!
@@ -15,7 +16,8 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+     //   self.tfEmail.text! = "test123@gmail.com"
+      //  self.tfPassword.text! = "12345678"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,33 +39,34 @@ class LoginVC: UIViewController {
     
     
     @IBAction func btnLogin(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "TabVC") as! TabVC
-        vc.selectedIndex = 2
-        self.navigationController?.pushViewController(vc, animated: true)
+        if tfEmail.text! == "" {
+        objAlert.showAlert(message: MessageConstant.BlankEmail, title: "", controller: self)
+        }else if tfPassword.text! == "" {
+            objAlert.showAlert(message: MessageConstant.BlankPassword, title: "", controller: self)
+        }else{
+            self.call_WsLogin()
+        }
     }
     
     @IBAction func btnForgotPass(_ sender: Any) {
-        
+        let vc = storyboard?.instantiateViewController(identifier: "ForgotPasswordVC") as! ForgotPasswordVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 
 //MARK:- Call Webservice
-
 extension LoginVC{
     
     func call_WsLogin(){
-        
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-        
         objWebServiceManager.showIndicator()
-        
         let dicrParam = ["username":self.tfEmail.text!,
-                         "password":self.tfPassword.text!]as [String:Any]
+                         "password":self.tfPassword.text!,"register_id":"1"]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_Login, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
@@ -72,25 +75,13 @@ extension LoginVC{
             let message = (response["message"] as? String)
          //   print(response)
             if status == MessageConstant.k_StatusCode{
-                if let user_details  = response["result"] as? [String:Any] {
-                    let isEmailVerified = user_details["email_verified"] as! String
-                    if isEmailVerified == "0" {
-                        var strUserName = ""
-                        if let userName = user_details["name"]as? String{
-                            strUserName = userName
-                        }
-                        //Show Email Verification Popup
-                    
-                    }
-                    else {
-                   //     print(user_details)
-                        objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details)
-                        objAppShareData.fetchUserInfoFromAppshareData()
-                        self.pushVc(viewConterlerId: "DemoViewController")
-                    }
-                }
-                else {
-                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabVC") as! TabVC
+                vc.selectedIndex = 2
+                self.navigationController?.pushViewController(vc, animated: true)
+                let dict = response as NSDictionary
+                let result = (dict["result"] as! NSDictionary)
+                if dict.count > 0 {
+                    AppSharedData.setUserInfo(dictInfo: result)
                 }
             }else{
                 objWebServiceManager.hideIndicator()
@@ -99,17 +90,11 @@ extension LoginVC{
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "", controller: self)
                 }
-                
-                
             }
             
             
         } failure: { (Error) in
-          //  print(Error)
             objWebServiceManager.hideIndicator()
         }
-        
-        
     }
-    
 }

@@ -16,6 +16,11 @@ class TabVC: UITabBarController,UITabBarControllerDelegate {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
 
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

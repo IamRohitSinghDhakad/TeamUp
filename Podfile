@@ -12,13 +12,5 @@ target 'TeamUp' do
   pod 'IQKeyboardManagerSwift'
   pod 'iOSDropDown'
 
-  target 'TeamUpTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'TeamUpUITests' do
-    # Pods for testing
-  end
 
 end

@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185CBFA726EBD0CC001B8F3A /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CBFA626EBD0CC001B8F3A /* Toast.swift */; };
+		185CBFAC26EBD100001B8F3A /* ValidationFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185CBFAB26EBD100001B8F3A /* ValidationFile.swift */; };
 		185F3D7826E373560012A490 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185F3D7726E373560012A490 /* BaseViewController.swift */; };
+		18685EB126EE4B5400914E5F /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685EB026EE4B5400914E5F /* ForgotPasswordVC.swift */; };
+		18685EC526EE5B1B00914E5F /* ChangePasswordVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685EC426EE5B1B00914E5F /* ChangePasswordVc.swift */; };
+		189F22EA26EA93FF00F457D2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189F22E926EA93FF00F457D2 /* CategoryModel.swift */; };
 		18B3F27026E21E8F00235A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3F26F26E21E8F00235A87 /* AppDelegate.swift */; };
 		18B3F27926E21E9000235A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F27826E21E9000235A87 /* Assets.xcassets */; };
 		18B3F27C26E21E9000235A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F27A26E21E9000235A87 /* LaunchScreen.storyboard */; };
@@ -16,7 +21,6 @@
 		18B3F30F26E24E2900235A87 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3F30E26E24E2900235A87 /* FloatRatingView.swift */; };
 		18B3F33126E295DF00235A87 /* UiViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3F33026E295DF00235A87 /* UiViewExtension.swift */; };
 		736DC8518D1C584552482729 /* Pods_TeamUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A287CBEF855143278DFF1482 /* Pods_TeamUp.framework */; };
-		B3B2087323AD34D8E63B8F7A /* Pods_TeamUp_TeamUpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50157DAEE5787C9E7475EC47 /* Pods_TeamUp_TeamUpUITests.framework */; };
 		F95F53EE26E4DF0F0047D1A7 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53C626E4DF0F0047D1A7 /* EditProfileVC.swift */; };
 		F95F53EF26E4DF0F0047D1A7 /* ViewProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53C826E4DF0F0047D1A7 /* ViewProfileVC.swift */; };
 		F95F53F026E4DF0F0047D1A7 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F53CA26E4DF0F0047D1A7 /* TabVC.swift */; };
@@ -42,7 +46,6 @@
 		F95F540D26E4DF4F0047D1A7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F540726E4DF4F0047D1A7 /* NotificationCell.swift */; };
 		F95F540E26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */; };
 		F95F540F26E4DF4F0047D1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95F540926E4DF4F0047D1A7 /* Main.storyboard */; };
-		F963907CE98E9081A7934107 /* Pods_TeamUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAF225FB3A5C3C4BF13928B /* Pods_TeamUpTests.framework */; };
 		F993E65926E69CBA007D8E99 /* StepFourSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */; };
 		F993E65A26E69CBA007D8E99 /* StepThreeSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */; };
 		F993E65B26E69CBA007D8E99 /* StepTwoSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */; };
@@ -83,9 +86,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02B4B7840B8213B069F169B9 /* Pods-TeamUp-TeamUpUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUp-TeamUpUITests.release.xcconfig"; path = "Target Support Files/Pods-TeamUp-TeamUpUITests/Pods-TeamUp-TeamUpUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1341629506D20C0A4600D5C4 /* Pods-TeamUp-TeamUpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUp-TeamUpUITests.debug.xcconfig"; path = "Target Support Files/Pods-TeamUp-TeamUpUITests/Pods-TeamUp-TeamUpUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		185CBFA626EBD0CC001B8F3A /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		185CBFAB26EBD100001B8F3A /* ValidationFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationFile.swift; sourceTree = "<group>"; };
 		185F3D7726E373560012A490 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		18685EB026EE4B5400914E5F /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		18685EC426EE5B1B00914E5F /* ChangePasswordVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordVc.swift; sourceTree = "<group>"; };
+		189F22E926EA93FF00F457D2 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		18B3F26C26E21E8F00235A87 /* TeamUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B3F26F26E21E8F00235A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18B3F27826E21E9000235A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,13 +105,9 @@
 		18B3F29326E21E9100235A87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B3F30E26E24E2900235A87 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		18B3F33026E295DF00235A87 /* UiViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewExtension.swift; sourceTree = "<group>"; };
-		50157DAEE5787C9E7475EC47 /* Pods_TeamUp_TeamUpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamUp_TeamUpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69AA50204C054483368E89EB /* Pods-TeamUpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUpTests.release.xcconfig"; path = "Target Support Files/Pods-TeamUpTests/Pods-TeamUpTests.release.xcconfig"; sourceTree = "<group>"; };
 		76FCEDBA22DFE6C4B56A85BF /* Pods-TeamUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUp.debug.xcconfig"; path = "Target Support Files/Pods-TeamUp/Pods-TeamUp.debug.xcconfig"; sourceTree = "<group>"; };
-		8FAF225FB3A5C3C4BF13928B /* Pods_TeamUpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamUpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A287CBEF855143278DFF1482 /* Pods_TeamUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47855F0A4581F733D19B3EA /* Pods-TeamUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUp.release.xcconfig"; path = "Target Support Files/Pods-TeamUp/Pods-TeamUp.release.xcconfig"; sourceTree = "<group>"; };
-		D87D14D450F6F45D622E42E6 /* Pods-TeamUpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamUpTests.debug.xcconfig"; path = "Target Support Files/Pods-TeamUpTests/Pods-TeamUpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F95F53C626E4DF0F0047D1A7 /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		F95F53C826E4DF0F0047D1A7 /* ViewProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileVC.swift; sourceTree = "<group>"; };
 		F95F53CA26E4DF0F0047D1A7 /* TabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVC.swift; sourceTree = "<group>"; };
@@ -166,7 +168,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F963907CE98E9081A7934107 /* Pods_TeamUpTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +175,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3B2087323AD34D8E63B8F7A /* Pods_TeamUp_TeamUpUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +187,22 @@
 				185F3D7726E373560012A490 /* BaseViewController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		18685EAF26EE4B2600914E5F /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				18685EB026EE4B5400914E5F /* ForgotPasswordVC.swift */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		18685EC326EE5B1B00914E5F /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				18685EC426EE5B1B00914E5F /* ChangePasswordVc.swift */,
+			);
+			path = ChangePassword;
 			sourceTree = "<group>";
 		};
 		18B3F26326E21E8F00235A87 = {
@@ -287,10 +303,6 @@
 			children = (
 				76FCEDBA22DFE6C4B56A85BF /* Pods-TeamUp.debug.xcconfig */,
 				A47855F0A4581F733D19B3EA /* Pods-TeamUp.release.xcconfig */,
-				1341629506D20C0A4600D5C4 /* Pods-TeamUp-TeamUpUITests.debug.xcconfig */,
-				02B4B7840B8213B069F169B9 /* Pods-TeamUp-TeamUpUITests.release.xcconfig */,
-				D87D14D450F6F45D622E42E6 /* Pods-TeamUpTests.debug.xcconfig */,
-				69AA50204C054483368E89EB /* Pods-TeamUpTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -299,8 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				A287CBEF855143278DFF1482 /* Pods_TeamUp.framework */,
-				50157DAEE5787C9E7475EC47 /* Pods_TeamUp_TeamUpUITests.framework */,
-				8FAF225FB3A5C3C4BF13928B /* Pods_TeamUpTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,6 +318,8 @@
 		F95F53C426E4DF0F0047D1A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18685EC326EE5B1B00914E5F /* ChangePassword */,
+				18685EAF26EE4B2600914E5F /* ForgetPassword */,
 				F95F53C526E4DF0F0047D1A7 /* EditProfile */,
 				F95F53C726E4DF0F0047D1A7 /* ViewProfile */,
 				F95F53C926E4DF0F0047D1A7 /* TabbarVC */,
@@ -559,6 +571,7 @@
 		F9B4629826E49D1A00D47656 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				185CBFA626EBD0CC001B8F3A /* Toast.swift */,
 				F9B4629926E49D1A00D47656 /* LocationPicker */,
 				F9B4629E26E49D1A00D47656 /* AlertViewController.swift */,
 				F9B4629F26E49D1A00D47656 /* MessageConstant.swift */,
@@ -592,6 +605,7 @@
 		F9B462AF26E49D3600D47656 /* WebServiceManager */ = {
 			isa = PBXGroup;
 			children = (
+				185CBFAB26EBD100001B8F3A /* ValidationFile.swift */,
 				F9B462B026E49D3600D47656 /* WebServiceManager.swift */,
 				F9B462B126E49D3600D47656 /* WebServiceHelper.swift */,
 			);
@@ -601,6 +615,7 @@
 		F9B462B426E4A39300D47656 /* ModelClasses */ = {
 			isa = PBXGroup;
 			children = (
+				189F22E926EA93FF00F457D2 /* CategoryModel.swift */,
 				F9B462BA26E4A44A00D47656 /* UserDefaultExtension.swift */,
 				F9B462B526E4A3AB00D47656 /* SignUpModel.swift */,
 			);
@@ -641,7 +656,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18B3F29926E21E9100235A87 /* Build configuration list for PBXNativeTarget "TeamUpTests" */;
 			buildPhases = (
-				F5A3A4DFA78C3B0F4B06BC8D /* [CP] Check Pods Manifest.lock */,
 				18B3F27E26E21E9100235A87 /* Sources */,
 				18B3F27F26E21E9100235A87 /* Frameworks */,
 				18B3F28026E21E9100235A87 /* Resources */,
@@ -660,11 +674,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18B3F29C26E21E9100235A87 /* Build configuration list for PBXNativeTarget "TeamUpUITests" */;
 			buildPhases = (
-				430AEDBEEE0746C634A1AF9D /* [CP] Check Pods Manifest.lock */,
 				18B3F28926E21E9100235A87 /* Sources */,
 				18B3F28A26E21E9100235A87 /* Frameworks */,
 				18B3F28B26E21E9100235A87 /* Resources */,
-				40FF93FA36803F7F6736D650 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -748,45 +760,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		40FF93FA36803F7F6736D650 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TeamUp-TeamUpUITests/Pods-TeamUp-TeamUpUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TeamUp-TeamUpUITests/Pods-TeamUp-TeamUpUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeamUp-TeamUpUITests/Pods-TeamUp-TeamUpUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		430AEDBEEE0746C634A1AF9D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TeamUp-TeamUpUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4C41600D6CBC548CE77EF30D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -826,28 +799,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeamUp/Pods-TeamUp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F5A3A4DFA78C3B0F4B06BC8D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TeamUpTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -856,12 +807,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F993E65B26E69CBA007D8E99 /* StepTwoSignUpVC.swift in Sources */,
+				185CBFA726EBD0CC001B8F3A /* Toast.swift in Sources */,
 				F9B462AB26E49D1A00D47656 /* ValidationManager.swift in Sources */,
 				F95F53F526E4DF0F0047D1A7 /* NotificationVC.swift in Sources */,
 				F95F540226E4DF0F0047D1A7 /* FavoriteVC.swift in Sources */,
 				F9B462A726E49D1A00D47656 /* LocationPickerViewController.swift in Sources */,
 				F9B462A826E49D1A00D47656 /* SearchHistoryManager.swift in Sources */,
 				F993E65A26E69CBA007D8E99 /* StepThreeSignUpVC.swift in Sources */,
+				18685EC526EE5B1B00914E5F /* ChangePasswordVc.swift in Sources */,
 				F9B462A526E49D1A00D47656 /* LocationSearchResultsViewController.swift in Sources */,
 				F9B462A626E49D1A00D47656 /* Location.swift in Sources */,
 				F95F53FA26E4DF0F0047D1A7 /* AddPostVC.swift in Sources */,
@@ -878,6 +831,7 @@
 				F95F540D26E4DF4F0047D1A7 /* NotificationCell.swift in Sources */,
 				F95F53FD26E4DF0F0047D1A7 /* BookAppointMentVC.swift in Sources */,
 				F95F53FB26E4DF0F0047D1A7 /* SettingsVC.swift in Sources */,
+				189F22EA26EA93FF00F457D2 /* CategoryModel.swift in Sources */,
 				F95F53F726E4DF0F0047D1A7 /* WelcomeVC.swift in Sources */,
 				F95F53EF26E4DF0F0047D1A7 /* ViewProfileVC.swift in Sources */,
 				F9B4629726E49B6000D47656 /* RDTextView.swift in Sources */,
@@ -885,6 +839,7 @@
 				18B3F27026E21E8F00235A87 /* AppDelegate.swift in Sources */,
 				F95F540026E4DF0F0047D1A7 /* ProfileVC.swift in Sources */,
 				F95F53F326E4DF0F0047D1A7 /* ChatListVC.swift in Sources */,
+				185CBFAC26EBD100001B8F3A /* ValidationFile.swift in Sources */,
 				F9B462BB26E4A44A00D47656 /* UserDefaultExtension.swift in Sources */,
 				F9B462AE26E49D1A00D47656 /* TableViewExtension.swift in Sources */,
 				F95F53F926E4DF0F0047D1A7 /* LocationVC.swift in Sources */,
@@ -896,6 +851,7 @@
 				F9B462AD26E49D1A00D47656 /* CustomUIView.swift in Sources */,
 				F9B462AC26E49D1A00D47656 /* Extensions.swift in Sources */,
 				F9B462A926E49D1A00D47656 /* AlertViewController.swift in Sources */,
+				18685EB126EE4B5400914E5F /* ForgotPasswordVC.swift in Sources */,
 				F95F53FC26E4DF0F0047D1A7 /* SheduleRequestVC.swift in Sources */,
 				F95F53FE26E4DF0F0047D1A7 /* FindMeVC.swift in Sources */,
 				F95F53F426E4DF0F0047D1A7 /* ChatUserList.swift in Sources */,
@@ -1113,7 +1069,6 @@
 		};
 		18B3F29A26E21E9100235A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D87D14D450F6F45D622E42E6 /* Pods-TeamUpTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1135,7 +1090,6 @@
 		};
 		18B3F29B26E21E9100235A87 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69AA50204C054483368E89EB /* Pods-TeamUpTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1157,7 +1111,6 @@
 		};
 		18B3F29D26E21E9100235A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1341629506D20C0A4600D5C4 /* Pods-TeamUp-TeamUpUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1177,7 +1130,6 @@
 		};
 		18B3F29E26E21E9100235A87 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02B4B7840B8213B069F169B9 /* Pods-TeamUp-TeamUpUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -13,6 +13,11 @@ class WelcomeVC: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
     @IBAction func btnNext(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "LoginVC") as! LoginVC

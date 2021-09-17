@@ -17,6 +17,17 @@ class StepFourSignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showDatePicker()
+        self.navigationItem.setHidesBackButton(false, animated: true)
+        
+                let currentDate = Date()
+                var dateComponents = DateComponents()
+                let calendar = Calendar.init(identifier: .gregorian)
+                dateComponents.year = -18
+                let minDate = calendar.date(byAdding: dateComponents, to: currentDate)
+                dateComponents.year = -18
+                let maxDate = calendar.date(byAdding: dateComponents, to: currentDate)
+                datePicker.maximumDate = maxDate
+                
     }
     
 

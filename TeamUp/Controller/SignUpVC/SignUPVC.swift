@@ -17,11 +17,13 @@ class SignUPVC: UIViewController {
     var catId = String()
     
     @IBOutlet weak var viewDropDown: DropDown!
+    @IBOutlet weak var tfProffession: UITextField!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.call_WsCategory()
+        self.navigationItem.setHidesBackButton(false, animated: true)
         // Do any additional setup after loading the view.
     }
     

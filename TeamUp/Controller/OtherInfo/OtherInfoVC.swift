@@ -32,6 +32,8 @@ class OtherInfoVC: UIViewController {
         super.viewDidLoad()
         self.call_WsSubCategory()
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
+        self.navigationItem.setHidesBackButton(false, animated: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

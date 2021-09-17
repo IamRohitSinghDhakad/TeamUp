@@ -24,6 +24,8 @@ class StepThreeSignUpVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationItem.setHidesBackButton(false, animated: true)
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -16,7 +16,7 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   self.tfEmail.text! = "test123@gmail.com"
+       // self.tfEmail.text! = "test123@gmail.com"
       //  self.tfPassword.text! = "12345678"
     }
     
@@ -33,7 +33,7 @@ class LoginVC: UIViewController {
 
     
     @IBAction func btnDontHaveAcc(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "SignUPVC") as! SignUPVC
+        let vc = storyboard?.instantiateViewController(identifier: "SignUpFirstViewController") as! SignUpFirstViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -76,7 +76,7 @@ extension LoginVC{
          //   print(response)
             if status == MessageConstant.k_StatusCode{
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabVC") as! TabVC
-                vc.selectedIndex = 2
+                vc.selectedIndex = 0
                 self.navigationController?.pushViewController(vc, animated: true)
                 let dict = response as NSDictionary
                 let result = (dict["result"] as! NSDictionary)

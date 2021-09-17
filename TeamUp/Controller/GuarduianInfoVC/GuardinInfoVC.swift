@@ -25,6 +25,7 @@ class GuardinInfoVC: UIViewController {
         tfAddress.text! = AppSharedData.sharedObject().address
         tfEmail.text! = AppSharedData.sharedObject().email
         tfMobile.text! = AppSharedData.sharedObject().phone
+        self.navigationItem.setHidesBackButton(false, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

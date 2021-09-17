@@ -88,3 +88,12 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+/.DS_Store
+/Pods/.DS_Store
+/Pods/IQKeyboardManagerSwift/.DS_Store
+/Pods/SDWebImage/.DS_Store
+/Pods/Target Support Files/.DS_Store
+/TeamUp/.DS_Store
+/TeamUp/Assets.xcassets/.DS_Store
+/TeamUp/Controller/.DS_Store
+/TeamUp/View/.DS_Store

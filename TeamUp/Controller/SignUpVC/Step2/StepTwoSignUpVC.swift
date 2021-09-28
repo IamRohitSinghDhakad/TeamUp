@@ -21,7 +21,6 @@ class StepTwoSignUpVC: UIViewController {
         self.tfLastName.delegate = self
         self.tfFirstName.delegate = self
         self.navigationItem.setHidesBackButton(false, animated: true)
-
     }
     
 

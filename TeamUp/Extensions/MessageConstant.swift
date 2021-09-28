@@ -47,6 +47,9 @@ class MessageConstant: NSObject {
     static let CountrySelection: String = "Please select the country"
     static let stateSelection: String = "Please select the state"
     static let citySelection: String = "Please select the city"
+    
+    
+    static let enterProfession: String = "Please Enter Profession"
 
 
 

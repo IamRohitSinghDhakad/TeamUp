@@ -20,11 +20,6 @@ class GuardinInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tfFirstName.text! = AppSharedData.sharedObject().userFname
-        tfLastName.text! = AppSharedData.sharedObject().userLastname
-        tfAddress.text! = AppSharedData.sharedObject().address
-        tfEmail.text! = AppSharedData.sharedObject().email
-        tfMobile.text! = AppSharedData.sharedObject().phone
         self.navigationItem.setHidesBackButton(false, animated: true)
     }
     
@@ -48,8 +43,6 @@ class GuardinInfoVC: UIViewController {
             objAlert.showAlert(message: MessageConstant.BlankPhoneNo, title: "", controller: self)
         }else if tfEmail.text! == "" {
             objAlert.showAlert(message: MessageConstant.BlankEmail, title: "", controller: self)
-        }else if tfUserName.text! == "" {
-            objAlert.showAlert(message: MessageConstant.BlankUsername, title: "", controller: self)
         }else if tfRelation.text! == "" {
             objAlert.showAlert(message: MessageConstant.BlankRelationship, title: "", controller: self)
         }else if tfAddress.text! == "" {
@@ -57,24 +50,13 @@ class GuardinInfoVC: UIViewController {
         }else{
         let vc = storyboard?.instantiateViewController(identifier: "OtherInfoVC") as! OtherInfoVC
             AppSharedData.sharedObject().relationShip = tfRelation.text!
-            AppSharedData.sharedObject().userName = tfUserName.text!
+            AppSharedData.sharedObject().guardianFname = tfFirstName.text!
+            AppSharedData.sharedObject().guardianLname = tfLastName.text!
+            AppSharedData.sharedObject().guardianMobileNo = tfMobile.text!
+            AppSharedData.sharedObject().guardianEmail = tfEmail.text!
+            AppSharedData.sharedObject().guardianAddress = tfAddress.text!
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
 }

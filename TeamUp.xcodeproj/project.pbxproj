@@ -13,6 +13,9 @@
 		18685EB126EE4B5400914E5F /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685EB026EE4B5400914E5F /* ForgotPasswordVC.swift */; };
 		18685EC526EE5B1B00914E5F /* ChangePasswordVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685EC426EE5B1B00914E5F /* ChangePasswordVc.swift */; };
 		189F22EA26EA93FF00F457D2 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189F22E926EA93FF00F457D2 /* CategoryModel.swift */; };
+		189FE31C27024625003BD62A /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FE31B27024625003BD62A /* CategoryVC.swift */; };
+		189FE321270252A9003BD62A /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FE320270252A9003BD62A /* ArrayExtension.swift */; };
+		189FE32627025327003BD62A /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FE32527025327003BD62A /* DictionaryExtension.swift */; };
 		18B3F27026E21E8F00235A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3F26F26E21E8F00235A87 /* AppDelegate.swift */; };
 		18B3F27926E21E9000235A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F27826E21E9000235A87 /* Assets.xcassets */; };
 		18B3F27C26E21E9000235A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F27A26E21E9000235A87 /* LaunchScreen.storyboard */; };
@@ -97,6 +100,9 @@
 		18685EB026EE4B5400914E5F /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		18685EC426EE5B1B00914E5F /* ChangePasswordVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordVc.swift; sourceTree = "<group>"; };
 		189F22E926EA93FF00F457D2 /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		189FE31B27024625003BD62A /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
+		189FE320270252A9003BD62A /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		189FE32527025327003BD62A /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		18B3F26C26E21E8F00235A87 /* TeamUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B3F26F26E21E8F00235A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18B3F27826E21E9000235A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -567,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */,
+				189FE31B27024625003BD62A /* CategoryVC.swift */,
 			);
 			path = Step2;
 			sourceTree = "<group>";
@@ -590,6 +597,8 @@
 		F9B4629826E49D1A00D47656 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				189FE32527025327003BD62A /* DictionaryExtension.swift */,
+				189FE320270252A9003BD62A /* ArrayExtension.swift */,
 				185CBFA626EBD0CC001B8F3A /* Toast.swift */,
 				F9B4629926E49D1A00D47656 /* LocationPicker */,
 				F9B4629E26E49D1A00D47656 /* AlertViewController.swift */,
@@ -908,12 +917,15 @@
 				F95F53F826E4DF0F0047D1A7 /* LoginVC.swift in Sources */,
 				F9B462B926E4A40C00D47656 /* AppSharedData.swift in Sources */,
 				F9B462B626E4A3AB00D47656 /* SignUpModel.swift in Sources */,
+				189FE31C27024625003BD62A /* CategoryVC.swift in Sources */,
 				F95F53F026E4DF0F0047D1A7 /* TabVC.swift in Sources */,
+				189FE321270252A9003BD62A /* ArrayExtension.swift in Sources */,
 				F9B462B326E49D3600D47656 /* WebServiceHelper.swift in Sources */,
 				F95F540126E4DF0F0047D1A7 /* GuardinInfoVC.swift in Sources */,
 				F95F540D26E4DF4F0047D1A7 /* NotificationCell.swift in Sources */,
 				F95F53FD26E4DF0F0047D1A7 /* BookAppointMentVC.swift in Sources */,
 				F95F53FB26E4DF0F0047D1A7 /* SettingsVC.swift in Sources */,
+				189FE32627025327003BD62A /* DictionaryExtension.swift in Sources */,
 				189F22EA26EA93FF00F457D2 /* CategoryModel.swift in Sources */,
 				F95F53F726E4DF0F0047D1A7 /* WelcomeVC.swift in Sources */,
 				F95F53EF26E4DF0F0047D1A7 /* ViewProfileVC.swift in Sources */,

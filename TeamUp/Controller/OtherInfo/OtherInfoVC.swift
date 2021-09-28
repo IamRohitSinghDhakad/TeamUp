@@ -14,17 +14,21 @@ class OtherInfoVC: UIViewController {
     @IBOutlet weak var tfAgeGroup: UITextField!
     @IBOutlet weak var tfTeamFree: UITextField!
     @IBOutlet weak var tfSchool: UITextField!
-    @IBOutlet weak var tfAmount: UITextField!
     @IBOutlet weak var tfSkils: UITextField!
     @IBOutlet weak var tfSportsSkill: DropDown!
-    @IBOutlet weak var tfSpecification: DropDown!
     
-    
-    
+    @IBOutlet weak var btnCheckMark: UIButton!
     @IBOutlet weak var btnPriceper: UIButton!
-    
     @IBOutlet weak var btnFreeTeam: UIButton!
     var arrSubCategory = NSMutableArray()
+    
+    @IBOutlet weak var hgtSelectOneView: NSLayoutConstraint!
+    @IBOutlet weak var vwAgeGroup: UIView!
+    @IBOutlet weak var vwAddress: UIView!
+    @IBOutlet weak var vwSchool: UIView!
+    @IBOutlet weak var vwTeamFee: UIView!
+    
+    var subCatId = String()
     
     
     // MARK: - LifeCycle
@@ -33,7 +37,8 @@ class OtherInfoVC: UIViewController {
         self.call_WsSubCategory()
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
         self.navigationItem.setHidesBackButton(false, animated: true)
-
+        self.userAndProvider(isProvider: AppSharedData.sharedObject().isProvider)
+        self.checkMarkSlectone(isCheckMark: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +51,26 @@ class OtherInfoVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    
+    
+    func setTfDelegate() {
+        tfSportsSkill.didSelect{ [self](selectedText , index ,id) in
+            let dict = arrSubCategory[index] as! NSDictionary
+            self.subCatId = dict["category_id"] as! String
+            
+        }
+    }
+    
+    func userAndProvider(isProvider:Bool) {
+        if (isProvider) {
+            self.hgtSelectOneView.constant = 112
+        }
+        else
+        {
+        self.hgtSelectOneView.constant = 0
+        }
+    }
+    
     @IBAction func btnNext(_ sender: Any) {
         self.call_OtherInfo()
     }
@@ -56,6 +81,32 @@ class OtherInfoVC: UIViewController {
     }
     
     
+    @IBAction func btnCheckMark(_ sender: Any) {
+        if (btnCheckMark.isSelected == false) {
+            self.btnCheckMark.isSelected = true
+            self.btnCheckMark.setImage(UIImage(named: "box"), for: .normal)
+            self.checkMarkSlectone(isCheckMark: true)
+        }else if (btnCheckMark.isSelected == true){
+            self.btnCheckMark.setImage(UIImage(named: "check"), for: .normal)
+            self.checkMarkSlectone(isCheckMark: false)
+            self.btnCheckMark.isSelected = false
+        }
+        
+    }
+        func checkMarkSlectone(isCheckMark:Bool) {
+            if (isCheckMark) {
+                self.vwSchool.isHidden = true
+                self.vwAddress.isHidden = true
+                self.vwTeamFee.isHidden = true
+                self.vwAgeGroup.isHidden = true
+            }else{
+                self.vwSchool.isHidden = false
+                self.vwAddress.isHidden = false
+                self.vwTeamFee.isHidden = false
+                self.vwAgeGroup.isHidden = false
+            }
+        }
+     
     @IBAction func btnSelectionTeam(_ sender: Any) {
         self.btnPriceper.setImage(UIImage(named: "black"), for: .normal)
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
@@ -75,35 +126,33 @@ extension OtherInfoVC{
             return
         }
         
-        let dicrParam = ["username":AppSharedData.sharedObject().userName,
-                         "password":AppSharedData.sharedObject().password,
+        let dicrParam = ["password":AppSharedData.sharedObject().password,
                          "type":"1",
-                         "name":AppSharedData.sharedObject().userFname,
+                         "first_name":AppSharedData.sharedObject().userFname,
+                         "last_name":AppSharedData.sharedObject().userLastname,
+                         "name":AppSharedData.sharedObject().userName,
                          "mobile":AppSharedData.sharedObject().phone,
                          "email":AppSharedData.sharedObject().email,
                          "dob":AppSharedData.sharedObject().dob,
-                         "age":"29",
-                         "sex":"mail",
+                         "age":AppSharedData.sharedObject().age,
                          "address":AppSharedData.sharedObject().address,
-                         "city":"indore",
-                         "country":"india",
-                         "pincode":"202245",
-                         "business_address":"patnipura",
-                         "business_city":"indore",
-                         "business_country":"india",
-                         "user_image":"",
+                         "profession":AppSharedData.sharedObject().profession,
                          "lat":"29.241426",
                          "lng":"73.517815",
                          "category_id":AppSharedData.sharedObject().catId,
-                         "sub_category_id":"3",
-                         "other_category":"athlet",
-                         "other_sub_category":"",
-                         "club_name":AppSharedData.sharedObject().password,
-                         "club_address":AppSharedData.sharedObject().password,
-                         "age_group":"18",
-                         "price":"25",
-                         "social_id":"",
-                         "social_type":"",
+                         "sub_category_id":self.subCatId,
+                         "g_fname":AppSharedData.sharedObject().guardianFname,
+                         "g_lname":AppSharedData.sharedObject().guardianLname,
+                         "g_mobile":AppSharedData.sharedObject().guardianMobileNo,
+                         "g_email":AppSharedData.sharedObject().guardianEmail,
+                         "relationship":AppSharedData.sharedObject().relationShip,
+                         "g_address":AppSharedData.sharedObject().guardianAddress,
+                         "g_latitude":"29.241426",
+                         "g_longitude":"73.517815",
+                         "club_name":tfSchool.text!,
+                         "club_address":tfAddress.text!,
+                         "age_group":tfAgeGroup.text!,
+                         "price":tfTeamFree.text!,
                          "language":"En","register_id":"1"]as [String:Any]
         
         objWebServiceManager.showIndicator()
@@ -143,7 +192,6 @@ extension OtherInfoVC{
         let dicrParam = ["category_id":AppSharedData.sharedObject().catId]as [String:Any]
         objWebServiceManager.showIndicator()
         objWebServiceManager.requestGet(strURL: WsUrl.url_getSubCategory, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
-            
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
@@ -156,8 +204,6 @@ extension OtherInfoVC{
                         let dict = user_details[i] as! NSDictionary
                         arrCat.append(dict["sub_category_name"] as? String ?? "")
                     }
-                    
-                    self.tfSpecification.optionArray = arrCat
                     self.tfSportsSkill.optionArray = arrCat
                 }
                 else {

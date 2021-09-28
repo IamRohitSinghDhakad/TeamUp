@@ -26,11 +26,13 @@ class SignUpFirstViewController: UIViewController {
     }
     
     @IBAction func btnOnUser(_ sender: Any) {
+        AppSharedData.sharedObject().isProvider = false
         let vc = storyboard?.instantiateViewController(identifier: "SignUPVC") as! SignUPVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnOnProvider(_ sender: Any) {
+        AppSharedData.sharedObject().isProvider = true
         let vc = storyboard?.instantiateViewController(identifier: "SignUPVC") as! SignUPVC
         self.navigationController?.pushViewController(vc, animated: true)
     }

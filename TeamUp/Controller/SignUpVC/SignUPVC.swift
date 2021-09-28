@@ -8,10 +8,10 @@
 import UIKit
 import iOSDropDown
 
-class SignUPVC: UIViewController {
+class SignUPVC: UIViewController,myCategoryDelegate {
     
     
-    
+    @IBOutlet weak var btnCategory: UIButton!
     
     var arrCategory = NSMutableArray()
     var catId = String()
@@ -31,11 +31,7 @@ class SignUPVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         
-        viewDropDown.didSelect{ [self](selectedText , index ,id) in
-            let dict = arrCategory[index] as! NSDictionary
-            self.catId = dict["category_id"] as! String
-            
-        }
+      
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,12 +39,31 @@ class SignUPVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    @IBAction func btnChooseCategory(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "CategoryVC") as! CategoryVC
+        vc.modalPresentationStyle = .popover
+        vc.arrCategory = self.arrCategory
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func getMyCategory(strTitle: String, strId: String) {
+        AppSharedData.sharedObject().catId = strId
+        self.catId = strId
+        self.btnCategory.setTitle(strTitle, for: .normal)
+        self.btnCategory.setTitleColor(UIColor.black, for: .normal)
+    }
+    
+    
+    
     @IBAction func btnSignUp(_ sender: Any) {
         if self.catId == "" {
         objAlert.showAlert(message: "Please Select Category", title: "", controller: self)
+        }else if tfProffession.text == "" {
+            objAlert.showAlert(message: MessageConstant.enterProfession, title: "", controller: self)
         }else{
         let vc = storyboard?.instantiateViewController(identifier: "StepTwoSignUpVC") as! StepTwoSignUpVC
-            AppSharedData.sharedObject().catId = self.catId
+            AppSharedData.sharedObject().profession = self.tfProffession.text!
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -74,14 +89,8 @@ class SignUPVC: UIViewController {
                 let message = (response["message"] as? String)
              //   print(response)
                 if status == MessageConstant.k_StatusCode{
-                    var arrCat = [String]()
                     if let user_details  = response["result"] as? NSArray {
                         self.arrCategory = user_details.mutableCopy() as! NSMutableArray
-                        for i in 0..<user_details.count {
-                            let dict = user_details[i] as! NSDictionary
-                            arrCat.append(dict["category_name"] as? String ?? "")
-                        }
-                        self.viewDropDown.optionArray = arrCat
                     }
                     else {
                         objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)

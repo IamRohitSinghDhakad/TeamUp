@@ -39,7 +39,20 @@ class AppSharedData: NSObject {
     var address = ""
     var age = ""
     var userName = ""
+    
+    var profession = ""
+    var isProvider = Bool()
+    
+   ///Guardian Information
+    var guardianFname = ""
+    var guardianLname = ""
+    var guardianMobileNo = ""
+    var guardianEmail = ""
+    var guardianAddress = ""
     var relationShip = ""
+    
+    
+    
     
     static let userInfo = "Infinote"
     

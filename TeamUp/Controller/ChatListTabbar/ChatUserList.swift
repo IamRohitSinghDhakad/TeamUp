@@ -46,6 +46,9 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let url = URL(string: image ?? "")
         cell.imgProfile.kf.setImage(with: url)
         }
+        
+        cell.imgProfile.layer.cornerRadius = cell.imgProfile.frame.height/2
+        cell.imgProfile.clipsToBounds = true
         return cell
     }
     
@@ -53,6 +56,7 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "ChatListVC") as! ChatListVC
+        vc.dictPrevious = (arrChatList[indexPath.row] as? NSDictionary)!
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

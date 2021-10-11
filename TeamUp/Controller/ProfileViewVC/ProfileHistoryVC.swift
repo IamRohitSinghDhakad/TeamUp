@@ -60,7 +60,7 @@ class ProfileHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         
         objWebServiceManager.showIndicator()
        
-        let url  = WsUrl.url_get_post+"?post_id=1&post_by=2"
+        let url  = WsUrl.url_get_post+"?post_id=&post_by="
         
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()

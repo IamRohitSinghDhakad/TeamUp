@@ -19,10 +19,13 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     
   //  var arrChatMsg = NSMutableArray()
     var arrChatMsg = [ChatDetailModel]()
+    var dictPrevious = NSDictionary()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("dictPrevious>>>>>\(dictPrevious)")
         tblChatList.delegate = self
         tblChatList.dataSource = self
         self.title = "Chat"
@@ -285,8 +288,11 @@ extension ChatListVC{
     
        // objWebServiceManager.showIndicator()
         
-        let dicrParam = ["receiver_id":"2",//Opponent ID
-                         "sender_id":"1",//My ID
+        let receiverId = dictPrevious.GetString(forKey: "receiver_id")
+        let senderId = dictPrevious.GetString(forKey: "sender_id")
+        
+        let dicrParam = ["receiver_id":receiverId,//Opponent ID
+                         "sender_id":senderId,//My ID
                          "type":"text",
                          "chat_message":strText]as [String:Any]
         

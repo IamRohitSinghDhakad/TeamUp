@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource,myViewDelegate {
+    
+    func callViewProfile(index: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileVC
+        vc.dictData = (arrUserList[index.row] as? NSDictionary)!
+        
+        vc.strType = "SearchView"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     
 
@@ -49,21 +59,26 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.lblRupes.text! = dict?.GetString(forKey: "price") ?? ""
         cell.viewRating.editable = ((dict?.GetFloat(forKey: "avg_rating")) != nil)
         cell.hgtConstantHart.constant = 0
+        cell.selectedIndex = indexPath
         cell.delegate = self
+        
+        let image = dict?.GetString(forKey: "user_image")
+        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
+        if image != "" {
+        let url = URL(string: image ?? "")
+        cell.imgProfile.kf.setImage(with: url)
+        }
         return cell
     }
     
 
     @IBAction func btnSave(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "LocationVC") as! LocationVC
+        vc.arrAnnotation = self.arrUserList
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func callViewProfile(index: Int) {
-        let vc = storyboard?.instantiateViewController(identifier: "ViewProfileVC") as! ViewProfileVC
-        vc.dictData = (arrUserList[index] as? NSDictionary)!
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+   
     
     
     

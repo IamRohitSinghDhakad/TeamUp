@@ -62,11 +62,7 @@ class ViewProfileVC: UIViewController ,UICollectionViewDelegate,UICollectionView
     }
     
     @IBAction func btnBookAppointment(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "BookAppointMentVC") as! BookAppointMentVC
-        vc.modalPresentationStyle = .formSheet
-        vc.modalTransitionStyle  = .crossDissolve
-        vc.dictData = self.dictData
-        self.present(vc, animated: true, completion: nil)
+      
     }
     
     

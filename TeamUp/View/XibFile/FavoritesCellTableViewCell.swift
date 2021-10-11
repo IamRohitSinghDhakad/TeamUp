@@ -8,7 +8,7 @@
 import UIKit
 
 protocol myViewDelegate {
-    func callViewProfile(index:Int)
+    func callViewProfile(index:IndexPath)
 }
 
 
@@ -24,10 +24,13 @@ class FavoritesCellTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     
     var delegate:myViewDelegate?
+    var selectedIndex = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.containerView.setShadowOnViewWithRadious(UIColor.gray, shadowRadius: 4.0, shadowOffset: CGSize(width: 0, height: 1.5))
+        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height/2
+        self.imgProfile.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +45,7 @@ class FavoritesCellTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnView(_ sender: Any) {
-        self.delegate?.callViewProfile(index: 1)
+        self.delegate?.callViewProfile(index: selectedIndex)
     }
     
     

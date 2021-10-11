@@ -14,6 +14,7 @@ class LocationVC: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
     @IBOutlet weak var vwSearch: UIView!
     @IBOutlet weak var mapKit: MKMapView!
     let locationManager = CLLocationManager()
+    var arrAnnotation = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,28 @@ class LocationVC: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
         self.title = "Location"
         self.setLocation()
         
+        
+        
+        
+        var annotations = [MKAnnotation]()
+
+        for i in 0..<arrAnnotation.count {
+            let dict = arrAnnotation[i] as! NSDictionary
+            let annotation = MKPointAnnotation()
+            let long = dict.GetString(forKey: "lng")
+            let lat = dict.GetString(forKey: "lat")
+            
+            let doubleLat = Double(lat)
+            let doubleLong = Double(long)
+            
+            annotation.coordinate = CLLocationCoordinate2D(latitude: doubleLat ?? 0.00, longitude: doubleLong ?? 0.00)
+
+            annotations.append(annotation)
+
+        }
+        
+        
+        mapKit.addAnnotations(annotations)
         
     }
     

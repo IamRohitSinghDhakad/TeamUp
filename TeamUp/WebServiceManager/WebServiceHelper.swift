@@ -10,18 +10,39 @@ let BASE_URL = "https://ambitious.in.net/Arun/teamUp/index.php/api/"//Live
 struct WsUrl{
     
     static let url_SignUp  = BASE_URL + "signup?"
-    static let url_SocialLogin  = BASE_URL + "social_login"
     static let url_getSubCategory = BASE_URL + "get_sub_category?"
     static let url_Login  = BASE_URL + "login"
     static let url_getCategory = BASE_URL + "get_category"
-    static let url_getStates = BASE_URL + "get_state?"
-    static let url_getCity = BASE_URL + "get_city?"
-    static let url_completeProfile = BASE_URL + "complete_profile"
     static let url_forgotPassword = BASE_URL + "forgot_password?"
     static let url_ChangePassword = BASE_URL + "change_password"
+    static let url_Terms = BASE_URL + "page/Terms"
+    static let url_About = BASE_URL + "page/About%20Us"
+    static let url_getUserProfile  = BASE_URL + "get_profile"
+    static let url_contact_us  = BASE_URL + "contact_us"
+    static let url_update_profile  = BASE_URL + "update_profile?"
+    static let url_get_users  = BASE_URL + "get_users"
+    static let url_get_appointment  = BASE_URL + "get_appointment"
+    static let url_book_appointment  = BASE_URL + "book_appointment"
+    static let url_update_appointment  = BASE_URL + "update_appointment"
+    static let url_review  = BASE_URL + "review"
+    static let url_get_post  = BASE_URL + "get_post"
+    static let url_get_conversation  = BASE_URL + "get_conversation"
+    static let url_add_post  = BASE_URL + "add_post?"
+    static let url_getChat = BASE_URL + "get_chat"
+   
+  
+    
+   // get_post //get_appointment,,book_appointment,api/review,get_post,get_conversation,add_post?
+    //update_profile?
+    
+   
+   
+   
+    
+    
     
     static let url_GetUserImage = BASE_URL + "get_user_image"
-    static let url_getUserProfile  = BASE_URL + "get_profile"
+   
     static let url_getNotification  = BASE_URL + "get_notification"
     static let url_getConversationList = BASE_URL + "get_conversation"
     static let url_getBlockList = BASE_URL + "blocked_list"

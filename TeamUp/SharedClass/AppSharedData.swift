@@ -39,6 +39,8 @@ class AppSharedData: NSObject {
     var address = ""
     var age = ""
     var userName = ""
+    var lat = ""
+    var long = ""
     
     var profession = ""
     var isProvider = Bool()
@@ -50,6 +52,8 @@ class AppSharedData: NSObject {
     var guardianEmail = ""
     var guardianAddress = ""
     var relationShip = ""
+    var guardianLat = ""
+    var guardianLong = ""
     
     
     

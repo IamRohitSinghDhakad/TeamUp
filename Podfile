@@ -11,6 +11,8 @@ target 'TeamUp' do
   pod 'SDWebImage/MapKit'
   pod 'IQKeyboardManagerSwift'
   pod 'iOSDropDown'
+  pod 'LocationPicker'
+  pod 'Kingfisher'
 
   target 'TeamUpTests' do
     inherit! :search_paths

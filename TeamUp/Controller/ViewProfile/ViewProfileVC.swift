@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewProfileVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var cvCollectionList: UICollectionView!
-    
-    
     @IBOutlet weak var imgProfile: UIImageView!
-    
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    
+    var dictData = NSDictionary()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,12 @@ class ViewProfileVC: UIViewController ,UICollectionViewDelegate,UICollectionView
         
         self.imgProfile.layer.cornerRadius = imgProfile.frame.height/2
         self.imgProfile.clipsToBounds = true
+        
+        self.lblName.text! = dictData.GetString(forKey: "name")
+        self.lblSubTitle.text! = dictData.GetString(forKey: "profession")
+        let image = dictData.GetString(forKey: "user_image")
+        let url = URL(string: image ?? "")
+        self.imgProfile.kf.setImage(with: url)
     }
     
     
@@ -58,7 +65,7 @@ class ViewProfileVC: UIViewController ,UICollectionViewDelegate,UICollectionView
         let vc = storyboard?.instantiateViewController(identifier: "BookAppointMentVC") as! BookAppointMentVC
         vc.modalPresentationStyle = .formSheet
         vc.modalTransitionStyle  = .crossDissolve
-        
+        vc.dictData = self.dictData
         self.present(vc, animated: true, completion: nil)
     }
     

@@ -16,8 +16,8 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.tfEmail.text! = "test123@gmail.com"
-      //  self.tfPassword.text! = "12345678"
+      //  self.tfEmail.text! = ""
+       // self.tfPassword.text! = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {

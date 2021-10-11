@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocationPicker
 
 class StepFourSignUpVC: UIViewController {
 
@@ -17,13 +18,13 @@ class StepFourSignUpVC: UIViewController {
     var intMonth = Int()
     var intDay = Int()
     @IBOutlet weak var lblAgeShow: UILabel!
+    let locationPicker = LocationPickerViewController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showDatePicker()
         self.navigationItem.setHidesBackButton(false, animated: true)
-        
                 let currentDate = Date()
                 var dateComponents = DateComponents()
                 let calendar = Calendar.init(identifier: .gregorian)
@@ -32,7 +33,6 @@ class StepFourSignUpVC: UIViewController {
                 dateComponents.year = 0
                 let maxDate = calendar.date(byAdding: dateComponents, to: currentDate)
                 datePicker.maximumDate = maxDate
-                
     }
     
 
@@ -64,11 +64,28 @@ class StepFourSignUpVC: UIViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            AppSharedData.sharedObject().dob = tfAge.text!
+            AppSharedData.sharedObject().age = tfAge.text!
             AppSharedData.sharedObject().dob = "\(intYear)"
             AppSharedData.sharedObject().address = tfAddress.text!
         }
     }
+    
+    
+    @IBAction func btnAddress(_ sender: Any) {
+        locationPicker.showCurrentLocationInitially = true
+        locationPicker.currentLocationButtonBackground = .blue
+        locationPicker.searchTextFieldColor = UIColor.white
+        locationPicker.mapType = .standard
+        locationPicker.searchBarPlaceholder = "Search places"
+        locationPicker.completion = { [self] location in
+            AppSharedData.sharedObject().lat = "\(String(describing: location?.coordinate.latitude))"
+            AppSharedData.sharedObject().lat = "\(String(describing: location?.coordinate.longitude))"
+            tfAddress.text = location?.name
+        }
+        navigationController?.pushViewController(locationPicker, animated: true)
+    }
+    
+    
 }
 
 

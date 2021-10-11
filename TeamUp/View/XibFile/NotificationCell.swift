@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol sheduleAcceptDelegate {
+    func mySheduleAccept(for cell: NotificationCell)
+    func mySheduleReject(for cell: NotificationCell)
+}
+
 class NotificationCell: UITableViewCell {
 
     @IBOutlet weak var btnReject: UIButton!
@@ -14,6 +19,11 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+    
+    var delegate:sheduleAcceptDelegate?
+    
+    var indexPath: IndexPath?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,11 +41,13 @@ class NotificationCell: UITableViewCell {
     }
     
     @IBAction func btnAccept(_ sender: Any) {
-        
+        let currentCell = self
+        self.delegate?.mySheduleAccept(for: currentCell)
     }
     
     @IBAction func btnReject(_ sender: Any) {
-        
+        let currentCell = self
+        self.delegate?.mySheduleReject(for: currentCell)
     }
     
     

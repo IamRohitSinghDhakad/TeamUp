@@ -23,6 +23,7 @@ class SheduleRequestVC: BaseViewController {
         super.viewDidLoad()
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height/2
         self.imgProfile.clipsToBounds = true
+        
         // Do any additional setup after loading the view.
         self.title = "Shedule Request"
         self.btnReject.layer.borderWidth = 1
@@ -33,7 +34,6 @@ class SheduleRequestVC: BaseViewController {
     @IBAction func btnViewProfile(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "FavoriteVC") as! FavoriteVC
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     

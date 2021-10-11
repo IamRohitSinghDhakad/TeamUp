@@ -50,6 +50,10 @@ class MessageConstant: NSObject {
     
     
     static let enterProfession: String = "Please Enter Profession"
+    static let entermessageTitle: String = "Please Enter title"
+    static let enterDescription: String = "Please Enter title"
+    static let selectImage: String = "Please Select Image"
+    
 
 
 

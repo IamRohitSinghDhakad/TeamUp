@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocationPicker
 
 class GuardinInfoVC: UIViewController {
 
@@ -16,6 +17,7 @@ class GuardinInfoVC: UIViewController {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfMobile: UITextField!
+    let locationPicker = LocationPickerViewController()
     
     
     override func viewDidLoad() {
@@ -33,7 +35,21 @@ class GuardinInfoVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    @IBAction func btnAddress(_ sender: Any) {
+        locationPicker.showCurrentLocationInitially = true
+        locationPicker.currentLocationButtonBackground = .blue
+        locationPicker.searchTextFieldColor = UIColor.white
+        locationPicker.mapType = .standard
+        locationPicker.searchBarPlaceholder = "Search places"
+        locationPicker.completion = { [self] location in
+            AppSharedData.sharedObject().guardianLat = "\(String(describing: location?.coordinate.latitude))"
+            AppSharedData.sharedObject().guardianLong = "\(String(describing: location?.coordinate.longitude))"
+            tfAddress.text = location?.name
+        }
+        navigationController?.pushViewController(locationPicker, animated: true)
 
+    }
+    
     @IBAction func btnEditProfile(_ sender: Any) {
         if tfFirstName.text! == "" {
             objAlert.showAlert(message: MessageConstant.BlankFname, title: "", controller: self)

@@ -46,9 +46,22 @@ class SettingsVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4 {
-            let vc = storyboard?.instantiateViewController(identifier: "ChangePasswordVc") as! ChangePasswordVc
+        if indexPath.row == 0 {
+            let vc = storyboard?.instantiateViewController(identifier: "ContactUsVc") as! ContactUsVc
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if indexPath.row == 2 {
+            let vc = storyboard?.instantiateViewController(identifier: "WebkitVC") as! WebkitVC
+            vc.strTitle = "Terms & Conditions"
+            vc.intType = 2
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if indexPath.row == 3 {
+            let vc = storyboard?.instantiateViewController(identifier: "WebkitVC") as! WebkitVC
+            vc.strTitle = "About Us"
+            vc.intType = 3
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if indexPath.row == 4 {
+        let vc = storyboard?.instantiateViewController(identifier: "ChangePasswordVc") as! ChangePasswordVc
+        self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 5 {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
             self.navigationController?.pushViewController(vc, animated: true)

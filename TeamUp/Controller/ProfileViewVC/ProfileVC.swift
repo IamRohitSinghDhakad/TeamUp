@@ -7,49 +7,28 @@
 
 import UIKit
 
-class ProfileVC: BaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet weak var cvCollectionList: UICollectionView!
-    
-    
+class ProfileVC: BaseViewController,UICollectionViewDelegate {
+  
     @IBOutlet weak var imgProfile: UIImageView!
-    
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    
+    @IBOutlet weak var containerMedia: UIView!
+    @IBOutlet weak var containerHistory: UIView!
+    @IBOutlet weak var containerRatings: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.title = "Profile"
-        self.cvCollectionList.delegate = self
-        self.cvCollectionList.dataSource = self
         
         self.imgProfile.layer.cornerRadius = imgProfile.frame.height/2
         self.imgProfile.clipsToBounds = true
+        self.containerMedia.isHidden = false
+        self.containerHistory.isHidden = true
+        self.containerRatings.isHidden = true
     }
     
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaTypeCell", for: indexPath) as! mediaTypeCell
-        cell.imgMedia.image = UIImage(named: "booo")
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width-20)/3, height: (collectionView.frame.width)/3)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-
-   
     @IBAction func btnAddPost(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "AddPostVC") as! AddPostVC
         self.navigationController?.pushViewController(vc, animated: true)
@@ -62,21 +41,26 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate,UICollectionViewDat
     
     
     @IBAction func btnMedia(_ sender: Any) {
-        
+        self.containerMedia.isHidden = false
+        self.containerHistory.isHidden = true
+        self.containerRatings.isHidden = true
         
     }
     
     @IBAction func btnHistory(_ sender: Any) {
-        
+        self.containerMedia.isHidden = true
+        self.containerHistory.isHidden = false
+        self.containerRatings.isHidden = true
         
     }
     
     
     @IBAction func btnRatings(_ sender: Any) {
+        self.containerMedia.isHidden = true
+        self.containerHistory.isHidden = true
+        self.containerRatings.isHidden = false
     }
     
 }
 
-class mediaTypeCell:UICollectionViewCell {
-    @IBOutlet weak var imgMedia: UIImageView!
-}
+

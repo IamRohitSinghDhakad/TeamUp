@@ -39,6 +39,7 @@ class OtherInfoVC: UIViewController {
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.userAndProvider(isProvider: AppSharedData.sharedObject().isProvider)
         self.checkMarkSlectone(isCheckMark: true)
+        self.setTfDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,15 +131,15 @@ extension OtherInfoVC{
                          "type":"1",
                          "first_name":AppSharedData.sharedObject().userFname,
                          "last_name":AppSharedData.sharedObject().userLastname,
-                         "name":AppSharedData.sharedObject().userName,
+                         "name":AppSharedData.sharedObject().userName+AppSharedData.sharedObject().userLastname,
                          "mobile":AppSharedData.sharedObject().phone,
                          "email":AppSharedData.sharedObject().email,
                          "dob":AppSharedData.sharedObject().dob,
                          "age":AppSharedData.sharedObject().age,
                          "address":AppSharedData.sharedObject().address,
                          "profession":AppSharedData.sharedObject().profession,
-                         "lat":"29.241426",
-                         "lng":"73.517815",
+                         "lat":AppSharedData.sharedObject().lat,
+                         "lng":AppSharedData.sharedObject().long,
                          "category_id":AppSharedData.sharedObject().catId,
                          "sub_category_id":self.subCatId,
                          "g_fname":AppSharedData.sharedObject().guardianFname,
@@ -147,8 +148,8 @@ extension OtherInfoVC{
                          "g_email":AppSharedData.sharedObject().guardianEmail,
                          "relationship":AppSharedData.sharedObject().relationShip,
                          "g_address":AppSharedData.sharedObject().guardianAddress,
-                         "g_latitude":"29.241426",
-                         "g_longitude":"73.517815",
+                         "g_latitude":AppSharedData.sharedObject().guardianLat,
+                         "g_longitude":AppSharedData.sharedObject().guardianLong,
                          "club_name":tfSchool.text!,
                          "club_address":tfAddress.text!,
                          "age_group":tfAgeGroup.text!,

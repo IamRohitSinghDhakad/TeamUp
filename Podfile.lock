@@ -2,6 +2,8 @@ PODS:
   - Alamofire (5.4.3)
   - iOSDropDown (0.3.4)
   - IQKeyboardManagerSwift (6.5.6)
+  - Kingfisher (7.0.0)
+  - LocationPicker (1.4.2)
   - SDWebImage/Core (5.11.1)
   - SDWebImage/MapKit (5.11.1):
     - SDWebImage/Core
@@ -11,6 +13,8 @@ DEPENDENCIES:
   - Alamofire
   - iOSDropDown
   - IQKeyboardManagerSwift
+  - Kingfisher
+  - LocationPicker
   - SDWebImage/MapKit
   - SVProgressHUD
 
@@ -19,6 +23,8 @@ SPEC REPOS:
     - Alamofire
     - iOSDropDown
     - IQKeyboardManagerSwift
+    - Kingfisher
+    - LocationPicker
     - SDWebImage
     - SVProgressHUD
 
@@ -26,9 +32,11 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
+  LocationPicker: 9af49409ec3ca13fdf4bf6b39e1a3c7dec029f4a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 0064757036c47e4ab917cf4d677246de3fb7fbaf
+PODFILE CHECKSUM: 81a3c31d19233e942020a8ad559e1cddb52cac17
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

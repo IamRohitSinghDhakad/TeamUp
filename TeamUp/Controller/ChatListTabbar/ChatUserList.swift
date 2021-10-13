@@ -72,7 +72,7 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
         objWebServiceManager.showIndicator()
        
         let dict = AppSharedData.getUserInfo()
-        let url  = WsUrl.url_get_conversation+"?user_id=1" //\(dict["user_id"] ?? "")
+        let url  = WsUrl.url_get_conversation+"?user_id=\(dict.GetString(forKey: "user_id"))" //\(dict["user_id"] ?? "")
         
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { [self] (response) in
             objWebServiceManager.hideIndicator()
@@ -86,7 +86,7 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     if self.arrChatList.count > 0 {
                         self.tblUserChatList.displayBackgroundText(text: "")
                     }else{
-                        self.tblUserChatList.displayBackgroundText(text: "No Chat Found")
+                        self.tblUserChatList.displayBackgroundText(text: "Chat History Not found")
                     }
                     self.tblUserChatList.reloadData()
                 }
@@ -97,6 +97,7 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 objWebServiceManager.hideIndicator()
                 if let msgg = response["result"]as? String{
                     objAlert.showAlert(message: msgg, title: "", controller: self)
+                    self.tblUserChatList.displayBackgroundText(text: "Chat History Not found")
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "", controller: self)
                 }

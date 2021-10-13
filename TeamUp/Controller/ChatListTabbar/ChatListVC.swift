@@ -16,6 +16,7 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     
     let txtViewCommentMaxHeight: CGFloat = 100
     let txtViewCommentMinHeight: CGFloat = 34
+    var myID = ""
     
   //  var arrChatMsg = NSMutableArray()
     var arrChatMsg = [ChatDetailModel]()
@@ -24,6 +25,11 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let dict = AppSharedData.getUserInfo()
+        if dict["user_id"] != nil{
+            self.myID = dict["user_id"] as! String
+        }
         
         print("dictPrevious>>>>>\(dictPrevious)")
         tblChatList.delegate = self
@@ -47,64 +53,8 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
         
         
         let obj = self.arrChatMsg[indexPath.row]
-        
-//        if obj.strImageUrl != ""{
-//            if obj.strSenderId == objAppShareData.UserDetail.strUserId{
-//                cell.vwMyMsg.isHidden = true
-//                cell.vwOpponent.isHidden = true
-//                cell.vwOpponentImage.isHidden = true
-//                cell.vwMyImage.isHidden = false
-//
-//                if obj.strType == "Sticker" || obj.strType == "sticker"{
-//                    cell.vwContainImgBorderMySide.backgroundColor = .clear
-//                    cell.imgVwMySide.contentMode = .scaleAspectFit
-////                    cell.vwContainImgBorderMySide.isHidden = false
-////                    cell.imgVwMySide.contentMode = .scaleAspectFill
-//                }else{
-//                    cell.vwContainImgBorderMySide.backgroundColor = UIColor.init(named: "AppSkyBlue")
-//                    cell.imgVwMySide.contentMode = .scaleAspectFill
-//                }
-//
-//                let profilePic = obj.strImageUrl
-////                if profilePic != "" {
-////                    let url = URL(string: profilePic)
-////                    cell.imgVwopponent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "splashLogo"), options: .refreshCached) { (image, error, cacheType, url) in
-////                        if image != nil {
-////                            cell.imgVwopponent.image = image
-////                        }
-////                        if let error = error {
-////                            print("URL: \(url), error: \(error)")
-////                        }
-////                    }
-//////                    cell.imgVwMySide.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "logo_square"))
-////                }
-//
-//                cell.imgVwMySide.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
-//
-//
-//
-//            }else{
-//                cell.vwMyMsg.isHidden = true
-//                cell.vwOpponent.isHidden = true
-//                cell.vwOpponentImage.isHidden = false
-//                cell.vwMyImage.isHidden = true
-//
-//
-//                if obj.strType == "Sticker" || obj.strType == "sticker"{
-//                    cell.vwContainImgBorderOpponentSide.backgroundColor = .clear
-//                    cell.imgVwopponent.contentMode = .scaleAspectFit
-////                    cell.vwContainImgBorderOpponentSide.isHidden = false
-////                    cell.imgVwopponent.contentMode = .scaleAspectFill
-//                }else{
-//                    cell.vwContainImgBorderOpponentSide.backgroundColor = UIColor.init(named: "AppSkyBlue")
-//                    cell.imgVwopponent.contentMode = .scaleAspectFill
-//                }
-//
-//                let profilePic = obj.strImageUrl
-//                cell.imgVwopponent.imageFromServerURL(urlString: profilePic, PlaceHolderImage: #imageLiteral(resourceName: "logo_square"))
-//            }
-//        }else{
-        if obj.strSenderId == "1"{//objAppShareData.UserDetail.strUserId{
+       
+        if obj.strSenderId == myID{
                 cell.vwMyMsg.isHidden = false
                 cell.lblMyMsg.text = obj.strOpponentChatMessage
                 cell.lblMyMsgTime.text = obj.strOpponentChatTime
@@ -118,8 +68,8 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     //    }
         
         cell.lblOpponentMsg.text = obj.strOpponentChatMessage
-        cell.lblopponentMsgTime.text = obj.strChatTime
-        cell.lblMyMsgTime.text = obj.strChatTime
+      //  cell.lblopponentMsgTime.text = obj.strChatTime
+      //  cell.lblMyMsgTime.text = obj.strChatTime
        
         return cell
     }
@@ -232,9 +182,12 @@ extension ChatListVC{
         }
         
         objWebServiceManager.showIndicator()
+        
+        let receiverId = dictPrevious.GetString(forKey: "receiver_id")
+        let senderId = dictPrevious.GetString(forKey: "sender_id")
        
-        let dict = AppSharedData.getUserInfo()
-        let url  = WsUrl.url_getChat+"?receiver_id=1&sender_id=2" //\(dict["user_id"] ?? "")
+        
+        let url  = WsUrl.url_getChat+"?receiver_id=\(receiverId)&sender_id=\(senderId)" //\(dict["user_id"] ?? "")
         
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { [self] (response) in
             objWebServiceManager.hideIndicator()

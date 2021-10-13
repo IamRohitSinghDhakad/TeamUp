@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gdk-sh-RI4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gdk-sh-RI4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -869,7 +869,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCell" rowHeight="48" id="kd2-Aj-oxi" customClass="SettingsCell" customModule="TeamUp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kd2-Aj-oxi" id="o6R-2e-G1u">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
@@ -1549,7 +1549,7 @@
                                                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatListCell" rowHeight="150" id="Ntq-6F-PUL" customClass="ChatListCell" customModule="TeamUp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="150"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ntq-6F-PUL" id="q9p-3I-1gF">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -1603,12 +1603,12 @@
                                                                                                     </subviews>
                                                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                     <constraints>
+                                                                                                        <constraint firstAttribute="bottom" secondItem="4hb-JZ-3yY" secondAttribute="bottom" constant="5" id="L0B-TG-AA4"/>
                                                                                                         <constraint firstItem="8SU-pS-9P5" firstAttribute="top" secondItem="T1f-2O-A30" secondAttribute="top" constant="5" id="MrA-Xf-tXQ"/>
                                                                                                         <constraint firstItem="4hb-JZ-3yY" firstAttribute="leading" secondItem="xcc-xE-xLn" secondAttribute="leading" id="OII-Bc-8x8"/>
                                                                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8SU-pS-9P5" secondAttribute="trailing" constant="20" id="S0b-Pf-wky"/>
                                                                                                         <constraint firstItem="4hb-JZ-3yY" firstAttribute="top" secondItem="8SU-pS-9P5" secondAttribute="bottom" constant="5" id="cmJ-bh-YGP"/>
                                                                                                         <constraint firstItem="8SU-pS-9P5" firstAttribute="leading" secondItem="T1f-2O-A30" secondAttribute="leading" constant="15" id="plL-Xj-scC"/>
-                                                                                                        <constraint firstAttribute="bottom" secondItem="8SU-pS-9P5" secondAttribute="bottom" constant="30" id="vf3-8L-w56"/>
                                                                                                     </constraints>
                                                                                                 </view>
                                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-Bd-3S5">
@@ -1664,6 +1664,7 @@
                                                                                                         <constraint firstItem="45O-wd-NEV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dSL-Bd-3S5" secondAttribute="leading" constant="20" id="5MM-xp-pTd"/>
                                                                                                         <constraint firstAttribute="bottom" secondItem="45O-wd-NEV" secondAttribute="bottom" constant="30" id="OVU-If-zoS"/>
                                                                                                         <constraint firstAttribute="trailing" secondItem="45O-wd-NEV" secondAttribute="trailing" constant="15" id="a25-L5-C9x"/>
+                                                                                                        <constraint firstAttribute="bottom" secondItem="1bj-MR-enA" secondAttribute="bottom" constant="5" id="a3o-WV-OZM"/>
                                                                                                         <constraint firstItem="1bj-MR-enA" firstAttribute="trailing" secondItem="Jna-N3-wGU" secondAttribute="trailing" id="ltO-nU-i1E"/>
                                                                                                         <constraint firstItem="1bj-MR-enA" firstAttribute="top" secondItem="45O-wd-NEV" secondAttribute="bottom" constant="5" id="qTd-hg-hwN"/>
                                                                                                         <constraint firstItem="45O-wd-NEV" firstAttribute="top" secondItem="dSL-Bd-3S5" secondAttribute="top" constant="5" id="voq-T9-KaY"/>
@@ -2248,7 +2249,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserChatCell" rowHeight="92" id="iC8-lM-szv" customClass="UserChatCell" customModule="TeamUp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="92"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iC8-lM-szv" id="E6p-gO-euf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
@@ -3473,7 +3474,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTblCell" rowHeight="60" id="9Qb-xk-8bl" customClass="CategoryTblCell" customModule="TeamUp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Qb-xk-8bl" id="WJP-h5-ehR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>

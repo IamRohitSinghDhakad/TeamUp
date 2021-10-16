@@ -17,6 +17,9 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
     let txtViewCommentMaxHeight: CGFloat = 100
     let txtViewCommentMinHeight: CGFloat = 34
     var myID = ""
+    var timer: Timer?
+    var arrCount = Int()
+    var initilizeFirstTimeOnly = Bool()
     
   //  var arrChatMsg = NSMutableArray()
     var arrChatMsg = [ChatDetailModel]()
@@ -37,6 +40,22 @@ class ChatListVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
         self.title = "Chat"
         self.txtVwChat.delegate = self
         
+        if self.timer == nil{
+            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        }else{
+            
+        }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    @objc func updateTimer() {
+        //example functionality
         self.call_GetChat()
     }
     
@@ -163,10 +182,25 @@ extension ChatListVC: UITextViewDelegate{
            // AppSharedClass.shared.showAlert(title: "Alert", message: "Please enter some text", view: self)
             return
         }else{
-            self.call_SendTextMessageOnly(strUserID: "", strText: "Hello iOS First Chat Message")
-           //asd self.call_WSSendMessage(strSenderID: self.getSenderID, strMessage: self.txtVwChat.text)
+           // self.call_SendTextMessageOnly(strUserID: "", strText: "Hello iOS First Chat Message")
+           // self.call_WSSendMessage(strSenderID: self.getSenderID, strMessage: self.txtVwChat.text)
+            self.call_SendTextMessageOnly(strText: self.txtVwChat.text!)
         }
         self.txtVwChat.text = ""
+    }
+    
+    func updateTableContentInset() {
+        let numRows = self.tblChatList.numberOfRows(inSection: 0)
+        var contentInsetTop = self.tblChatList.bounds.size.height
+        for i in 0..<numRows {
+            let rowRect = self.tblChatList.rectForRow(at: IndexPath(item: i, section: 0))
+            contentInsetTop -= rowRect.size.height
+            if contentInsetTop <= 0 {
+                contentInsetTop = 0
+                break
+            }
+        }
+        self.tblChatList.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: 0,right: 0)
     }
     
 }
@@ -181,7 +215,7 @@ extension ChatListVC{
             return
         }
         
-        objWebServiceManager.showIndicator()
+       // objWebServiceManager.showIndicator()
         
         let receiverId = dictPrevious.GetString(forKey: "receiver_id")
         let senderId = dictPrevious.GetString(forKey: "sender_id")
@@ -195,20 +229,97 @@ extension ChatListVC{
             let message = (response["message"] as? String)
             print(response)
             if status == MessageConstant.k_StatusCode{
-                if let user_details  = response["result"] as? [[String:Any]] {
-                    print("user_details>>>>>\(user_details)")
+                
+//                if let user_details  = response["result"] as? [[String:Any]] {
+//                    print("user_details>>>>>\(user_details)")
+//
+//                    for data in user_details{
+//                        let obj = ChatDetailModel.init(dict: data)
+//                        self.arrChatMsg.append(obj)
+//                    }
+//                 //   self.arrChatMsg = user_details.mutableCopy() as! NSMutableArray
+//                    if self.arrChatMsg.count > 0 {
+//                        self.tblChatList.displayBackgroundText(text: "")
+//                    }else{
+//                        self.tblChatList.displayBackgroundText(text: "No Chat Found")
+//                    }
+//                    self.tblChatList.reloadData()
+//                }
+                
+                if let arrData  = response["result"] as? [[String:Any]] {
+                    var newArrayChatMessages: [ChatDetailModel] = []
+                    for dict in arrData {
+                        let obj = ChatDetailModel.init(dict: dict)
+                        newArrayChatMessages.append(obj)
+                    }
                     
-                    for data in user_details{
-                        let obj = ChatDetailModel.init(dict: data)
-                        self.arrChatMsg.append(obj)
+                    if self.arrChatMsg.count == 0 {
+                        //Add initially all
+                        self.arrChatMsg.removeAll()
+                        self.tblChatList.reloadData()
+                        
+                        for i in 0..<arrData.count{
+                            let dictdata = arrData[i]
+                            let obj = ChatDetailModel.init(dict: dictdata)
+                            self.arrChatMsg.insert(obj, at: i)
+                            self.tblChatList.insertRows(at: [IndexPath(item: i, section: 0)], with: .none)
+                        }
+                        DispatchQueue.main.async {
+                            self.tblChatList.scrollToBottom()
+                        }
+                       
                     }
-                 //   self.arrChatMsg = user_details.mutableCopy() as! NSMutableArray
-                    if self.arrChatMsg.count > 0 {
-                        self.tblChatList.displayBackgroundText(text: "")
+                    else {
+                        let previoudIds = self.arrChatMsg.map { $0.strMsgIDForDelete }
+                        let newIds = newArrayChatMessages.map { $0.strMsgIDForDelete }
+
+                        let previoudIdsSet = Set(previoudIds)
+                        let newIdsSet = Set(newIds)
+                        
+                        let unique = (previoudIdsSet.symmetricDifference(newIdsSet)).sorted()
+                        
+                        for uniqueId in unique {
+                            if previoudIds.contains(uniqueId) {
+                                //Remove the element
+                                if let idToDelete = self.arrChatMsg.firstIndex(where: { $0.strMsgIDForDelete == uniqueId }) {
+                                    self.arrChatMsg.remove(at: idToDelete)
+                                    self.tblChatList.deleteRows(at: [IndexPath(item: idToDelete, section: 0)], with: .none)
+                                    
+                                }
+                            }
+                            else if newIds.contains(uniqueId) {
+                                // Add new element
+                                let filterObj = newArrayChatMessages.filter({ $0.strMsgIDForDelete == uniqueId })
+                                if filterObj.count > 0 {
+                                    let index = self.arrChatMsg.count
+                                    self.arrChatMsg.insert(filterObj[0], at: index)
+                                    self.tblChatList.insertRows(at: [IndexPath(item: index, section: 0)], with: .none)
+                                    self.tblChatList.scrollToBottom()
+                                }
+                            }
+                        }
+                    }
+                    
+                    if self.initilizeFirstTimeOnly == false{
+                        self.initilizeFirstTimeOnly = true
+                        self.arrCount = self.arrChatMsg.count
+                    }
+                
+                    if self.arrCount == self.arrChatMsg.count{
+                        
                     }else{
-                        self.tblChatList.displayBackgroundText(text: "No Chat Found")
+                        self.updateTableContentInset()
                     }
-                    self.tblChatList.reloadData()
+                    
+                    
+                    if self.arrChatMsg.count == 0{
+                        self.tblChatList.displayBackgroundText(text: "No Message Found!")
+                    }else{
+                        self.tblChatList.displayBackgroundText(text: "")
+                    }
+                    
+
+                    
                 }
                 else {
                     objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
@@ -231,7 +342,7 @@ extension ChatListVC{
     
     //MARK:- Send Text message Only
     
-    func call_SendTextMessageOnly(strUserID:String, strText:String){
+    func call_SendTextMessageOnly(strText:String){
         
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
@@ -244,8 +355,10 @@ extension ChatListVC{
         let receiverId = dictPrevious.GetString(forKey: "receiver_id")
         let senderId = dictPrevious.GetString(forKey: "sender_id")
         
-        let dicrParam = ["receiver_id":receiverId,//Opponent ID
-                         "sender_id":senderId,//My ID
+
+        
+        let dicrParam = ["receiver_id":senderId,//Opponent ID
+                         "sender_id":receiverId,//My ID
                          "type":"text",
                          "chat_message":strText]as [String:Any]
         
@@ -259,7 +372,7 @@ extension ChatListVC{
             if let result = response["result"]as? String{
                 if result == "successful"{
                    // self.isSendMessage = true
-                    //self.initilizeFirstTimeOnly = false
+                    self.initilizeFirstTimeOnly = false
                    // self.call_GetChatList(strUserID: objAppShareData.UserDetail.strUserId, strSenderID: self.strSenderID)
                 }
             }else{
@@ -285,4 +398,35 @@ class ChatListCell:UITableViewCell {
     @IBOutlet weak var lblMyMsg: UILabel!
     @IBOutlet weak var lblMyMsgTime: UILabel!
     
+}
+
+
+//MARK:- Scroll to bottom
+extension UITableView {
+
+    func scrollToBottom(){
+
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(
+                row: self.numberOfRows(inSection:  self.numberOfSections-1) - 1,
+                section: self.numberOfSections - 1)
+            if self.hasRowAtIndexPath(indexPath: indexPath) {
+                self.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+        }
+    }
+
+    func scrollToTop() {
+
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: 0, section: 0)
+            if self.hasRowAtIndexPath(indexPath: indexPath) {
+                self.scrollToRow(at: indexPath, at: .top, animated: false)
+           }
+        }
+    }
+
+    func hasRowAtIndexPath(indexPath: IndexPath) -> Bool {
+        return indexPath.section < self.numberOfSections && indexPath.row < self.numberOfRows(inSection: indexPath.section)
+    }
 }

@@ -158,6 +158,9 @@ extension EditProfileVC{
         
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
             let json = response as NSDictionary
+            
+            print(json)
+            
             let status = json.GetInt(forKey: "status")
             objWebServiceManager.hideIndicator()
             if status == 1 {

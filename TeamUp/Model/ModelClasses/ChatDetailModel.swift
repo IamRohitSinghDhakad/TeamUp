@@ -33,9 +33,9 @@ class ChatDetailModel: NSObject {
             self.strSenderId = sender_id
         }
         
-        if let id = dict["id"] as? String{
+        if let id = dict["chat_id"] as? String{
             self.strMsgIDForDelete = id
-        }else  if let id = dict["id"] as? String{
+        }else  if let id = dict["chat_id"] as? String{
             self.strMsgIDForDelete = id
         }
         

@@ -16,8 +16,10 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tblCategoryList: UITableView!
     var arrCategory = NSMutableArray()
-    
     var delegate:myCategoryDelegate?
+    var arrSubCategory = NSMutableArray()
+    
+    var strType = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.tblCategoryList.delegate = self
         self.tblCategoryList.dataSource = self
         self.tblCategoryList.reloadData()
+        
+        
     }
     
     // MARK: - TableViewDelegate&Datasource
@@ -36,50 +40,80 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if strType == "SubCat" {
+            return arrSubCategory.count
+        }else{
         return arrCategory.count
+        }
+        return Int()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryTblCell") as! CategoryTblCell
-        let dict = arrCategory[indexPath.row] as? NSDictionary
-        print("dict>>>>>>\(dict)")
-        if let title = dict?.value(forKey: "category_name") {
-            cell.lblTitle.text! = title as! String
+        var dict = NSDictionary()
+        if strType == "SubCat" {
+            dict = arrSubCategory[indexPath.row] as! NSDictionary
+            let title = dict.value(forKey: "sub_category_name")
+              cell.lblTitle.text! = title as! String
+        }else{
+            dict = arrCategory[indexPath.row] as! NSDictionary
+            let title = dict.value(forKey: "category_name")
+              cell.lblTitle.text! = title as! String
         }
       
-        if let status = dict?.GetInt(forKey: "status") {
+           let status = dict.GetInt(forKey: "status")
             if status == 0 {
                 cell.imgCheckBox.image = UIImage(named: "check")
             } else if status  == 1 {
                 cell.imgCheckBox.image = UIImage(named: "box")
             }
-        }
+        
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dict = arrCategory[indexPath.row] as? NSDictionary
-        let category_name = dict?.GetString(forKey: "category_name")
-        let category_image = dict?.GetString(forKey: "category_image")
+        if strType == "SubCat" {
+        let dict = arrSubCategory[indexPath.row] as? NSDictionary
+        let category_name = dict?.GetString(forKey: "sub_category_name")
+        let sub_category_id = dict?.GetString(forKey: "sub_category_id")
+        let entrydt = dict?.GetString(forKey: "entrydt")
         let category_id = dict?.GetInt(forKey: "category_id")
         let status = dict?.GetInt(forKey: "status")
         var dictData = NSMutableDictionary()
-        dictData.setValue(category_name, forKey: "category_name")
-        dictData.setValue(category_image, forKey: "category_image")
+        dictData.setValue(category_name, forKey: "sub_category_name")
+        dictData.setValue(entrydt, forKey: "entrydt")
+        dictData.setValue(sub_category_id, forKey: "sub_category_id")
         dictData.setValue(category_id, forKey: "category_id")
         dictData.setValue(status, forKey: "status")
-       
             if status == 1 {
                 dictData.setValue(0, forKey: "status")
             }else if status == 0 {
                 dictData.setValue(1, forKey: "status")
             }
-            self.arrCategory.replaceObject(at: indexPath.row, with:dictData)
+            self.arrSubCategory.replaceObject(at: indexPath.row, with:dictData)
             self.tblCategoryList.reloadData()
-    
-      
+        }else{
+            let dict = arrCategory[indexPath.row] as? NSDictionary
+            let category_name = dict?.GetString(forKey: "category_name")
+            let category_image = dict?.GetString(forKey: "category_image")
+            let category_id = dict?.GetInt(forKey: "category_id")
+            let status = dict?.GetInt(forKey: "status")
+            var dictData = NSMutableDictionary()
+            dictData.setValue(category_name, forKey: "category_name")
+            dictData.setValue(category_image, forKey: "category_image")
+            dictData.setValue(category_id, forKey: "category_id")
+            dictData.setValue(status, forKey: "status")
+                if status == 1 {
+                    dictData.setValue(0, forKey: "status")
+                }else if status == 0 {
+                    dictData.setValue(1, forKey: "status")
+                }
+                self.arrCategory.replaceObject(at: indexPath.row, with:dictData)
+                self.tblCategoryList.reloadData()
+        }
     }
+   
 
     @IBAction func btnCross(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -89,17 +123,31 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBAction func btnDone(_ sender: Any) {
         var strId = String()
         var strTitle = String()
-         for i in 0..<arrCategory.count {
-         let dict = arrCategory.getNSDictionary(atIndex: i)
-         let status = dict.GetInt(forKey: "status")
-         let catId = dict.GetInt(forKey: "category_id")
-            
-         let strCat = dict.GetString(forKey: "category_name")
-          if status == 0 {
-              strId = strId == "" ?"\(catId)" :"\(strId),\(catId)"
-              strTitle = strTitle == "" ?strCat :"\(strTitle),\(strCat)"
-          }
-       }
+        if strType == "SubCat" {
+            for i in 0..<arrSubCategory.count {
+                let dict = arrSubCategory.getNSDictionary(atIndex: i)
+                let status = dict.GetInt(forKey: "status")
+                let catId = dict.GetInt(forKey: "sub_category_id")
+                let strCat = dict.GetString(forKey: "sub_category_name")
+                if status == 0 {
+                    strId = strId == "" ?"\(catId)" :"\(strId),\(catId)"
+                    strTitle = strTitle == "" ?strCat :"\(strTitle),\(strCat)"
+                }
+            }
+        }else{
+            for i in 0..<arrCategory.count {
+                let dict = arrCategory.getNSDictionary(atIndex: i)
+                let status = dict.GetInt(forKey: "status")
+                let catId = dict.GetInt(forKey: "category_id")
+                
+                let strCat = dict.GetString(forKey: "category_name")
+                if status == 0 {
+                    strId = strId == "" ?"\(catId)" :"\(strId),\(catId)"
+                    strTitle = strTitle == "" ?strCat :"\(strTitle),\(strCat)"
+                }
+            }
+        }
+        
         self.delegate?.getMyCategory(strTitle: strTitle, strId: strId)
         self.dismiss(animated: true, completion: nil)
     }

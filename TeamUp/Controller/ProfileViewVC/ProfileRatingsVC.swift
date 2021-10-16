@@ -22,6 +22,10 @@ class ProfileRatingsVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         self.call_RatingReviews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_RatingReviews()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

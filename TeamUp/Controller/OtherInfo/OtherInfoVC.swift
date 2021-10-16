@@ -8,15 +8,18 @@
 import UIKit
 import iOSDropDown
 
-class OtherInfoVC: UIViewController {
+class OtherInfoVC: UIViewController,myCategoryDelegate{
+    
+    
 
     @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var tfAgeGroup: UITextField!
     @IBOutlet weak var tfTeamFree: UITextField!
     @IBOutlet weak var tfSchool: UITextField!
     @IBOutlet weak var tfSkils: UITextField!
-    @IBOutlet weak var tfSportsSkill: DropDown!
+    //@IBOutlet weak var tfSportsSkill: DropDown!
     
+    @IBOutlet weak var btnSportsSkill: UIButton!
     @IBOutlet weak var btnCheckMark: UIButton!
     @IBOutlet weak var btnPriceper: UIButton!
     @IBOutlet weak var btnFreeTeam: UIButton!
@@ -35,11 +38,12 @@ class OtherInfoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.call_WsSubCategory()
+        self.title = "Other Info"
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
         self.navigationItem.setHidesBackButton(false, animated: true)
         self.userAndProvider(isProvider: AppSharedData.sharedObject().isProvider)
         self.checkMarkSlectone(isCheckMark: true)
-        self.setTfDelegate()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,20 +55,10 @@ class OtherInfoVC: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
-    
-    func setTfDelegate() {
-        tfSportsSkill.didSelect{ [self](selectedText , index ,id) in
-            let dict = arrSubCategory[index] as! NSDictionary
-            self.subCatId = dict["category_id"] as! String
-            
-        }
-    }
-    
+  
     func userAndProvider(isProvider:Bool) {
         if (isProvider) {
-            self.hgtSelectOneView.constant = 112
+        self.hgtSelectOneView.constant = 112
         }
         else
         {
@@ -80,6 +74,24 @@ class OtherInfoVC: UIViewController {
         self.btnPriceper.setImage(UIImage(named: "circle"), for: .normal)
         self.btnFreeTeam.setImage(UIImage(named: "black"), for: .normal)
     }
+    
+    
+    @IBAction func btnSportsSkill(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "CategoryVC") as! CategoryVC
+        vc.modalPresentationStyle = .popover
+        vc.arrSubCategory = self.arrSubCategory
+        vc.strType = "SubCat"
+        vc.delegate = self
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func getMyCategory(strTitle: String, strId: String) {
+        self.subCatId = strId
+        self.btnSportsSkill.setTitle(strTitle, for: .normal)
+        self.btnSportsSkill.setTitleColor(UIColor.black, for: .normal)
+    }
+    
+    
     
     
     @IBAction func btnCheckMark(_ sender: Any) {
@@ -198,14 +210,8 @@ extension OtherInfoVC{
             let message = (response["message"] as? String)
             print(response)
             if status == MessageConstant.k_StatusCode{
-                var arrCat = [String]()
                 if let user_details  = response["result"] as? NSArray {
                     self.arrSubCategory = user_details.mutableCopy() as! NSMutableArray
-                    for i in 0..<user_details.count {
-                        let dict = user_details[i] as! NSDictionary
-                        arrCat.append(dict["sub_category_name"] as? String ?? "")
-                    }
-                    self.tfSportsSkill.optionArray = arrCat
                 }
                 else {
                     objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)

@@ -52,13 +52,10 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
             self.btnAddPost.isHidden = false
             self.btnBookAppointMent.isHidden = true
         }
-        
-        
        
     }
     
     func setData(dict:NSDictionary) {
-        
         self.lblName.text! = "\(dict.GetString(forKey: "first_name")) \(dict.GetString(forKey: "last_name"))"
         self.lblSubTitle.text! = dict.GetString(forKey: "profession")
         let image = dict.GetString(forKey: "user_image")
@@ -68,11 +65,7 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
             self.imgProfile.kf.setImage(with: url)
         }
     }
-    
-    
-    
-    
-    
+
     @IBAction func btnAddPost(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "AddPostVC") as! AddPostVC
         self.navigationController?.pushViewController(vc, animated: true)

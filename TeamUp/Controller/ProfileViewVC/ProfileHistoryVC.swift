@@ -22,6 +22,10 @@ class ProfileHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         self.call_GetPostHistory()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_GetPostHistory()
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -20,6 +20,10 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.call_GetPostHistory()
     }
     

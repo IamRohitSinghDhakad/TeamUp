@@ -178,7 +178,6 @@ extension NotificationVC  {
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
             let json = response as NSDictionary
             let status = json.GetInt(forKey: "status")
-            
             objWebServiceManager.hideIndicator()
             if status == 1 {
                 self.call_GetAppointMent()

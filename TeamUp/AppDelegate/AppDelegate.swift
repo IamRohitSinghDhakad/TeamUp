@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
+
         let dict = AppSharedData.getUserInfo()
         if dict["user_id"] != nil {
         let mainVC = UIStoryboard.init(name: "Main", bundle: nil)

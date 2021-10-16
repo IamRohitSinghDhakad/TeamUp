@@ -59,13 +59,13 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigati
     @IBAction func btnSave(_ sender: Any) {
         if tfFirstName.text == "" {
             objAlert.showAlert(message: MessageConstant.entermessageTitle, title: "", controller: self)
-        }else if imageData == nil {
+        }else if imgProfile.image == nil {
             objAlert.showAlert(message: MessageConstant.selectImage, title: "", controller: self)
         }else {
             let dict = AppSharedData.getUserInfo()
             let url = WsUrl.url_update_profile
             let convetUrl = URL(string: url)
-            self.upload(image: imageData!, to: convetUrl!, params: ["user_id":dict.GetString(forKey: "user_id"),"email":tfEmail.text!,"first_name":tfFirstName.text!,"last_name":tfLastName.text!,"mobile":tfMobileNo.text!,"address":tfAddress.text!,"dob":tfDob.text!,"password":tfpassword.text!])
+            self.upload(image: (imgProfile.image?.jpegData(compressionQuality: 0.5))!, to: convetUrl!, params: ["user_id":dict.GetString(forKey: "user_id"),"email":tfEmail.text!,"first_name":tfFirstName.text!,"last_name":tfLastName.text!,"mobile":tfMobileNo.text!,"address":tfAddress.text!,"dob":tfDob.text!,"password":tfpassword.text!])
         }
     }
     
@@ -171,7 +171,6 @@ extension EditProfileVC{
     }
     
     func setProfileData(dict:NSDictionary) {
-        
         self.tfEmail.text! = dict.GetString(forKey: "email")
         self.tfFirstName.text! = dict.GetString(forKey: "first_name")
         self.tfLastName.text! = dict.GetString(forKey: "last_name")
@@ -185,7 +184,9 @@ extension EditProfileVC{
         if image != "" {
         let url = URL(string: image ?? "")
             self.imgProfile.kf.setImage(with: url)
+            self.imageData = imgProfile.image?.jpegData(compressionQuality: 0.5)
         }
+        
     }
 }
 
@@ -283,17 +284,32 @@ extension EditProfileVC{
                     multipart.append(data, withName: key)
                 }
             }
-            multipart.append(image, withName: "file", fileName: "file.png", mimeType: "image/png")
+            multipart.append(image, withName: "user_image", fileName: "user_image.png", mimeType: "image/png")
         }
-
 
         AF.upload(multipartFormData: block, to: url)
             .uploadProgress(queue: .main, closure: { progress in
-                //Current upload progress of file
+               
                 print("Upload Progress: \(progress.fractionCompleted)")
             })
             .responseJSON(completionHandler: { data in
             objWebServiceManager.hideIndicator()
+                // Data to Swift Dictionary
+                do {
+                    if let jsonData = data.data{
+                        let parsedData = try JSONSerialization.jsonObject(with: jsonData) as! Dictionary<String, AnyObject>
+                        print(parsedData)
+                        let dictionary = parsedData as NSDictionary
+                        print("dictionary>>>>>\(dictionary)")
+                        let result = (dictionary["result"] as! NSDictionary)
+                        if result.count > 0 {
+                            AppSharedData.setUserInfo(dictInfo: result)
+                        }
+                    }
+                    }catch{
+                       
+                    }
+                
             objAlert.showAlert(message: "Profile Update Successfully", title: "", controller: self)
             self.navigationController?.popViewController(animated: true)
                 //Do what ever you want to do with response

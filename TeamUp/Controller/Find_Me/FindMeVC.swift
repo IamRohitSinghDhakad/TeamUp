@@ -25,7 +25,7 @@ class FindMeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "Find My"
+        self.title = "Find me"
         // Do any additional setup after loading the view.
         self.call_WsCategory()
     }

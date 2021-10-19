@@ -16,7 +16,8 @@ class SignUPVC: UIViewController,myCategoryDelegate {
     var arrCategory = NSMutableArray()
     var catId = String()
     
-    @IBOutlet weak var viewDropDown: DropDown!
+    @IBOutlet weak var lblCategory: UILabel!
+    
     @IBOutlet weak var tfProffession: UITextField!
     
 
@@ -50,8 +51,9 @@ class SignUPVC: UIViewController,myCategoryDelegate {
     func getMyCategory(strTitle: String, strId: String) {
         AppSharedData.sharedObject().catId = strId
         self.catId = strId
-        self.btnCategory.setTitle(strTitle, for: .normal)
-        self.btnCategory.setTitleColor(UIColor.black, for: .normal)
+               
+        self.lblCategory.text! = strTitle
+        self.lblCategory.textColor = UIColor.black
     }
     
     

@@ -38,6 +38,10 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.call_GetUserList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_GetUserList()
+    }
+    
     @objc func filter(){
         let vc = storyboard?.instantiateViewController(identifier: "FilterVC") as! FilterVC
         self.navigationController?.pushViewController(vc, animated: true)
@@ -122,47 +126,4 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
 }
 
-/*
- {
- address = "332, Bajrang Nagar, Indore, Madhya Pradesh 452010, India";
- age = "-1";
- "age_group" = "";
- "avg_rating" = "4.2";
- "category_id" = 10;
- "category_name" = "Chinese medical doctor";
- "club_address" = "";
- "club_name" = "";
- code = GDG68;
- distance = "8561.74 KM";
- dob = "15-10-2021";
- email = hchvjf;
- entryby = "";
- entrydt = "2021-09-27 18:08:55";
- "first_name" = gdgh;
- "g_address" = Indore;
- "g_email" = hcgxhf;
- "g_fname" = hfcu;
- "g_latitude" = "22.7195687";
- "g_lname" = yrgd;
- "g_longitude" = "75.8577258";
- "g_mobile" = 6686556;
- language = "";
- "last_name" = hchff;
- lat = "22.7458388";
- lng = "75.883343";
- mobile = 8868885;
- name = "gdgh hchff";
- otp = "";
- password = fhchc;
- price = "";
- profession = hfdhf;
- "register_id" = "Not Found";
- relationship = hfhch;
- "social_id" = "";
- "social_type" = "";
- status = 1;
- "sub_category_id" = 5;
- type = provider;
- "user_id" = 6;
- "user_image" = "https://ambitious.in.net/Arun/teamUp/";
- */
+

@@ -18,6 +18,7 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     @IBOutlet weak var tfSchool: UITextField!
     @IBOutlet weak var tfSkils: UITextField!
     //@IBOutlet weak var tfSportsSkill: DropDown!
+    @IBOutlet weak var lblSubCategory: UILabel!
     
     @IBOutlet weak var btnSportsSkill: UIButton!
     @IBOutlet weak var btnCheckMark: UIButton!
@@ -30,7 +31,6 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     @IBOutlet weak var vwAddress: UIView!
     @IBOutlet weak var vwSchool: UIView!
     @IBOutlet weak var vwTeamFee: UIView!
-    
     var subCatId = String()
     
     
@@ -87,8 +87,9 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     
     func getMyCategory(strTitle: String, strId: String) {
         self.subCatId = strId
-        self.btnSportsSkill.setTitle(strTitle, for: .normal)
-        self.btnSportsSkill.setTitleColor(UIColor.black, for: .normal)
+        
+        self.lblSubCategory.text! = strTitle
+        self.lblSubCategory.textColor = UIColor.black
     }
     
     

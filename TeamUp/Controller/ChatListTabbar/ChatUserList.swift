@@ -23,6 +23,10 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.call_GetChetList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.call_GetChetList()
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

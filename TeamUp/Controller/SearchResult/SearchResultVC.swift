@@ -8,12 +8,15 @@
 import UIKit
 import Kingfisher
 
-class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource,myViewDelegate {
+class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource,myViewDelegate,MyFilterDelegate {
+    
+    
+   
+    
     
     func callViewProfile(index: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileVC
         vc.dictData = (arrUserList[index.row] as? NSDictionary)!
-        
         vc.strType = "SearchView"
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -24,8 +27,9 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var tblSearchList: UITableView!
     var catId = String()
     var subCatId = String()
-    
     var arrUserList = NSMutableArray()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +39,22 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         tblSearchList.dataSource = self
         let filterButton = UIBarButtonItem(image: UIImage(named: "filter"), style: .plain, target: self, action: #selector(filter))
             self.navigationItem.rightBarButtonItem  = filterButton
-        self.call_GetUserList()
+        self.call_GetUserList(strLat: AppSharedData.sharedObject().lat, strlong: AppSharedData.sharedObject().long, strRatings: "", strSort: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.call_GetUserList()
+        
     }
     
     @objc func filter(){
         let vc = storyboard?.instantiateViewController(identifier: "FilterVC") as! FilterVC
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func filterData(strLat: String, strLong: String, strRating: String, strSortBy: String) {
+        
+        self.call_GetUserList(strLat: strLat, strlong: strLong, strRatings: strRating, strSort: strSortBy)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,7 +96,7 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     
-    func call_GetUserList(){
+    func call_GetUserList(strLat:String,strlong:String,strRatings:String,strSort:String){
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
@@ -95,8 +105,12 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         objWebServiceManager.showIndicator()
         let catId = "?category_id=\(self.catId)"
         let subCatId = "&sub_category_id=\(self.subCatId)"
+        let lat = "&lat=\(strLat)"
+        let long = "&lng=\(strlong)"
+        let rating = "&rating=\(strRatings)"
+        let sortBy = "&sort_by=\(strSort)"
         
-        let url  = WsUrl.url_get_users+"\(catId)\(subCatId)"
+        let url  = WsUrl.url_get_users+"\(catId)\(subCatId)\(lat)\(long)\(rating)\(sortBy)"
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)

@@ -3394,11 +3394,6 @@
                                                             <constraint firstItem="l2I-Ek-Ygt" firstAttribute="top" secondItem="aAl-LA-KG0" secondAttribute="top" id="uvi-l6-kfa"/>
                                                             <constraint firstItem="uGG-yG-07Q" firstAttribute="leading" secondItem="aAl-LA-KG0" secondAttribute="leading" id="yXd-9f-fkS"/>
                                                         </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fis-zc-XU5">
                                                         <rect key="frame" x="0.0" y="80" width="343" height="70"/>
@@ -5312,7 +5307,7 @@
         <image name="back" width="8" height="14"/>
         <image name="black" width="11.5" height="11.5"/>
         <image name="box" width="14.5" height="14.5"/>
-        <image name="calender" width="17" height="18.5"/>
+        <image name="calender" width="22.5" height="24"/>
         <image name="chat" width="24" height="24"/>
         <image name="circle" width="11.5" height="11.5"/>
         <image name="cross" width="18.5" height="18.5"/>

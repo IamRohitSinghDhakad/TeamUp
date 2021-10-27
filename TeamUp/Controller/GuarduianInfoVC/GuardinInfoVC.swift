@@ -8,7 +8,9 @@
 import UIKit
 import LocationPicker
 
-class GuardinInfoVC: UIViewController {
+class GuardinInfoVC: UIViewController,RSCountrySelectedDelegate {
+    
+    
 
     @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var tfRelation: UITextField!
@@ -17,7 +19,11 @@ class GuardinInfoVC: UIViewController {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfMobile: UITextField!
+    
+    var strCountryDialCode = ""
+    var strCountryCode = ""
     let locationPicker = LocationPickerViewController()
+    
     
     
     override func viewDidLoad() {
@@ -74,5 +80,18 @@ class GuardinInfoVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }
- 
+    @IBAction func btnOpenCountryPicker(_ sender: Any) {
+        let sb = UIStoryboard.init(name: "CountryPicker", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as! RSCountryPickerController
+        sb.RScountryDelegate = self
+        self.navigationController?.pushViewController(sb, animated: false)
+    }
+    
+    //MARK:- Protocol to get Country Info
+    func RScountrySelected(countrySelected country: CountryInfo) {
+        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+       // self.imgVwFlag.image = UIImage(named: imagePath)
+        strCountryDialCode = country.dial_code
+        strCountryCode = country.country_code
+    }
+    
 }

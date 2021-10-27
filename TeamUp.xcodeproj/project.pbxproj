@@ -63,6 +63,7 @@
 		F95F540E26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */; };
 		F95F540F26E4DF4F0047D1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95F540926E4DF4F0047D1A7 /* Main.storyboard */; };
 		F963907CE98E9081A7934107 /* Pods_TeamUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAF225FB3A5C3C4BF13928B /* Pods_TeamUpTests.framework */; };
+		F967A97227287D6900126A20 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967A97127287D6900126A20 /* LanguageViewController.swift */; };
 		F993E65926E69CBA007D8E99 /* StepFourSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */; };
 		F993E65A26E69CBA007D8E99 /* StepThreeSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */; };
 		F993E65B26E69CBA007D8E99 /* StepTwoSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */; };
@@ -82,6 +83,12 @@
 		F9B462B326E49D3600D47656 /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B462B126E49D3600D47656 /* WebServiceHelper.swift */; };
 		F9B462B926E4A40C00D47656 /* AppSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B462B826E4A40C00D47656 /* AppSharedData.swift */; };
 		F9B462BB26E4A44A00D47656 /* UserDefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B462BA26E4A44A00D47656 /* UserDefaultExtension.swift */; };
+		F9FEADEB2729CE50001C4183 /* RSCountryDialCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEADE52729CE50001C4183 /* RSCountryDialCode.swift */; };
+		F9FEADEC2729CE50001C4183 /* RSCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEADE62729CE50001C4183 /* RSCountryTableViewCell.swift */; };
+		F9FEADED2729CE50001C4183 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = F9FEADE72729CE50001C4183 /* countries.json */; };
+		F9FEADEE2729CE50001C4183 /* CountryPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9FEADE82729CE50001C4183 /* CountryPicker.storyboard */; };
+		F9FEADEF2729CE50001C4183 /* RSCountryPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEADE92729CE50001C4183 /* RSCountryPickerController.swift */; };
+		F9FEADF02729CE50001C4183 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F9FEADEA2729CE50001C4183 /* CountryPicker.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +177,7 @@
 		F95F540726E4DF4F0047D1A7 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		F95F540826E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesCellTableViewCell.xib; sourceTree = "<group>"; };
 		F95F540A26E4DF4F0047D1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F967A97127287D6900126A20 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		F993E65326E69CBA007D8E99 /* StepFourSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepFourSignUpVC.swift; sourceTree = "<group>"; };
 		F993E65526E69CBA007D8E99 /* StepThreeSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepThreeSignUpVC.swift; sourceTree = "<group>"; };
 		F993E65726E69CBA007D8E99 /* StepTwoSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTwoSignUpVC.swift; sourceTree = "<group>"; };
@@ -189,6 +197,12 @@
 		F9B462B126E49D3600D47656 /* WebServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		F9B462B826E4A40C00D47656 /* AppSharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSharedData.swift; sourceTree = "<group>"; };
 		F9B462BA26E4A44A00D47656 /* UserDefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultExtension.swift; sourceTree = "<group>"; };
+		F9FEADE52729CE50001C4183 /* RSCountryDialCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCountryDialCode.swift; sourceTree = "<group>"; };
+		F9FEADE62729CE50001C4183 /* RSCountryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCountryTableViewCell.swift; sourceTree = "<group>"; };
+		F9FEADE72729CE50001C4183 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		F9FEADE82729CE50001C4183 /* CountryPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CountryPicker.storyboard; sourceTree = "<group>"; };
+		F9FEADE92729CE50001C4183 /* RSCountryPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCountryPickerController.swift; sourceTree = "<group>"; };
+		F9FEADEA2729CE50001C4183 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +392,7 @@
 		F95F53C426E4DF0F0047D1A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F967A97027287D4C00126A20 /* LanguageSelect */,
 				18A310802706344100E04AC5 /* ContactUs */,
 				1861DA672704D95200F80534 /* WebView */,
 				18685EC326EE5B1B00914E5F /* ChangePassword */,
@@ -586,6 +601,14 @@
 			path = XibFile;
 			sourceTree = "<group>";
 		};
+		F967A97027287D4C00126A20 /* LanguageSelect */ = {
+			isa = PBXGroup;
+			children = (
+				F967A97127287D6900126A20 /* LanguageViewController.swift */,
+			);
+			path = LanguageSelect;
+			sourceTree = "<group>";
+		};
 		F993E65126E69CBA007D8E99 /* SignUpVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +649,7 @@
 		F9B4629426E49B5200D47656 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEADE42729CE50001C4183 /* SRCountryPickerController */,
 				F9B4629526E49B6000D47656 /* RDTextView */,
 			);
 			path = Utility;
@@ -702,6 +726,19 @@
 				F9B462B826E4A40C00D47656 /* AppSharedData.swift */,
 			);
 			path = SharedClass;
+			sourceTree = "<group>";
+		};
+		F9FEADE42729CE50001C4183 /* SRCountryPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEADE52729CE50001C4183 /* RSCountryDialCode.swift */,
+				F9FEADE62729CE50001C4183 /* RSCountryTableViewCell.swift */,
+				F9FEADE72729CE50001C4183 /* countries.json */,
+				F9FEADE82729CE50001C4183 /* CountryPicker.storyboard */,
+				F9FEADE92729CE50001C4183 /* RSCountryPickerController.swift */,
+				F9FEADEA2729CE50001C4183 /* CountryPicker.bundle */,
+			);
+			path = SRCountryPickerController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -814,10 +851,13 @@
 			files = (
 				18B3F27C26E21E9000235A87 /* LaunchScreen.storyboard in Resources */,
 				F95F540F26E4DF4F0047D1A7 /* Main.storyboard in Resources */,
+				F9FEADED2729CE50001C4183 /* countries.json in Resources */,
 				182C825D271016C500DC9AA1 /* ProfileHistoryCell.xib in Resources */,
+				F9FEADEE2729CE50001C4183 /* CountryPicker.storyboard in Resources */,
 				F95F540E26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.xib in Resources */,
 				18B3F27926E21E9000235A87 /* Assets.xcassets in Resources */,
 				182C82642710210F00DC9AA1 /* ProfileRatingsCell.xib in Resources */,
+				F9FEADF02729CE50001C4183 /* CountryPicker.bundle in Resources */,
 				F95F540C26E4DF4F0047D1A7 /* NotificationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -972,8 +1012,10 @@
 				189FE321270252A9003BD62A /* ArrayExtension.swift in Sources */,
 				F9B462B326E49D3600D47656 /* WebServiceHelper.swift in Sources */,
 				182C825C271016C500DC9AA1 /* ProfileHistoryCell.swift in Sources */,
+				F967A97227287D6900126A20 /* LanguageViewController.swift in Sources */,
 				F95F540126E4DF0F0047D1A7 /* GuardinInfoVC.swift in Sources */,
 				F95F540D26E4DF4F0047D1A7 /* NotificationCell.swift in Sources */,
+				F9FEADEC2729CE50001C4183 /* RSCountryTableViewCell.swift in Sources */,
 				F95F53FD26E4DF0F0047D1A7 /* BookAppointMentVC.swift in Sources */,
 				F95F53FB26E4DF0F0047D1A7 /* SettingsVC.swift in Sources */,
 				189FE32627025327003BD62A /* DictionaryExtension.swift in Sources */,
@@ -994,6 +1036,7 @@
 				F993E65926E69CBA007D8E99 /* StepFourSignUpVC.swift in Sources */,
 				F948A9B3271419A50096BD3E /* ChatDetailModel.swift in Sources */,
 				18A310712706239000E04AC5 /* ProfileModel.swift in Sources */,
+				F9FEADEB2729CE50001C4183 /* RSCountryDialCode.swift in Sources */,
 				F95F540B26E4DF4F0047D1A7 /* FavoritesCellTableViewCell.swift in Sources */,
 				F94CCB5626F4989E00E2C907 /* SignUpFirstViewController.swift in Sources */,
 				18A3107C27062B8D00E04AC5 /* SignUpModel.swift in Sources */,
@@ -1008,6 +1051,7 @@
 				F95F53FE26E4DF0F0047D1A7 /* FindMeVC.swift in Sources */,
 				F95F53F426E4DF0F0047D1A7 /* ChatUserList.swift in Sources */,
 				F9B462AA26E49D1A00D47656 /* MessageConstant.swift in Sources */,
+				F9FEADEF2729CE50001C4183 /* RSCountryPickerController.swift in Sources */,
 				F95F53F226E4DF0F0047D1A7 /* OtherInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "three.png",
+      "filename" : "signup_three.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "three@2x.png",
+      "filename" : "signup_three-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "three@3x.png",
+      "filename" : "signup_three-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

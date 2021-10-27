@@ -20,7 +20,7 @@ class WelcomeVC: UIViewController {
     }
 
     @IBAction func btnNext(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "LoginVC") as! LoginVC
+        let vc = storyboard?.instantiateViewController(identifier: "LanguageViewController") as! LanguageViewController
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

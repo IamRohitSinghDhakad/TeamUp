@@ -7,14 +7,16 @@
 
 import UIKit
 
-class StepThreeSignUpVC: UIViewController {
+class StepThreeSignUpVC: UIViewController,RSCountrySelectedDelegate {
     
-    
-
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfPhone: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet var lblCountryCode: UILabel!
     
+    
+    var strCountryDialCode = ""
+    var strCountryCode = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,21 @@ class StepThreeSignUpVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    @IBAction func btnOpenCountryPicker(_ sender: Any) {
+        let sb = UIStoryboard.init(name: "CountryPicker", bundle: Bundle.main).instantiateViewController(withIdentifier: "RSCountryPickerController")as! RSCountryPickerController
+        sb.RScountryDelegate = self
+        self.navigationController?.pushViewController(sb, animated: false)
+    }
+    
+    //MARK:- Protocol to get Country Info
+    func RScountrySelected(countrySelected country: CountryInfo) {
+        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+       // self.imgVwFlag.image = UIImage(named: imagePath)
+        strCountryDialCode = country.dial_code
+        strCountryCode = country.country_code
+        self.lblCountryCode.text = country.dial_code
     }
     
     @IBAction func btnNext(_ sender: Any) {

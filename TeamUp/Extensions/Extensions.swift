@@ -227,6 +227,16 @@ extension UILabel {//Write this extension after close brackets of your class
 }
 
 extension UIView{
+    
+    
+    func viewShadowHeader(view: UIView) {
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 1.0
+        view.layer.shadowColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+        
+    }
+    
     func viewShadowHeader() {
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowOpacity = 0.2

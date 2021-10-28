@@ -32,11 +32,16 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     @IBOutlet weak var vwSchool: UIView!
     @IBOutlet weak var vwTeamFee: UIView!
     var subCatId = String()
+    @IBOutlet var vwSkillSpecialization: UIView!
+    @IBOutlet var vwPerHourText: UIView!
+    @IBOutlet var stackVwCoachingClubBtn: UIStackView!
     
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.vwSkillSpecialization.isHidden = true
+        self.vwPerHourText.isHidden = true
         self.call_WsSubCategory()
         self.title = "Other Info"
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
@@ -49,6 +54,25 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        let allCategory = AppSharedData.sharedObject().allSelectedProfession
+        
+        if allCategory.contains("coach") || allCategory.contains("personal trainer") || allCategory.contains("specific skill trainer") {
+            self.vwSkillSpecialization.isHidden = false
+        }else{
+            self.vwSkillSpecialization.isHidden = true
+        }
+        
+        if AppSharedData.sharedObject().isProvider{
+            if allCategory.contains("sports doctor"){
+                self.vwPerHourText.isHidden = true
+            }else{
+                self.vwPerHourText.isHidden = false
+            }
+        }else{
+            self.vwPerHourText.isHidden = true
+        }
+        
     }
 
     override func viewWillDisappear(_ animated: Bool) {

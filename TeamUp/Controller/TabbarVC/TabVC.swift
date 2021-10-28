@@ -12,7 +12,7 @@ class TabVC: UITabBarController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
-        self.title = "Find My"
+      //  self.title = "Find My"
 
     }
     
@@ -29,7 +29,8 @@ class TabVC: UITabBarController,UITabBarControllerDelegate {
         }else if item == (self.tabBar.items!)[1]{
             self.title = "Notification"
         }else if item == (self.tabBar.items!)[2]{
-            self.title = "Find My"
+          //  self.title = "Find My"
+            self.title = ""
         }else if item == (self.tabBar.items!)[3]{
             self.title = "Profile"
         }else if item == (self.tabBar.items!)[4]{

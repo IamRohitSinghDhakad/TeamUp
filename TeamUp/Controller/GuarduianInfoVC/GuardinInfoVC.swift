@@ -19,6 +19,8 @@ class GuardinInfoVC: UIViewController,RSCountrySelectedDelegate {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfMobile: UITextField!
+    @IBOutlet var lblCountryCode: UILabel!
+    
     
     var strCountryDialCode = ""
     var strCountryCode = ""
@@ -74,7 +76,8 @@ class GuardinInfoVC: UIViewController,RSCountrySelectedDelegate {
             AppSharedData.sharedObject().relationShip = tfRelation.text!
             AppSharedData.sharedObject().guardianFname = tfFirstName.text!
             AppSharedData.sharedObject().guardianLname = tfLastName.text!
-            AppSharedData.sharedObject().guardianMobileNo = tfMobile.text!
+            AppSharedData.sharedObject().guardianMobileNo = self.lblCountryCode.text! + tfMobile.text!
+            AppSharedData.sharedObject().dialCode = self.lblCountryCode.text!
             AppSharedData.sharedObject().guardianEmail = tfEmail.text!
             AppSharedData.sharedObject().guardianAddress = tfAddress.text!
         self.navigationController?.pushViewController(vc, animated: true)

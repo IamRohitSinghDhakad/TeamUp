@@ -35,6 +35,7 @@ class AppSharedData: NSObject {
     var email = ""
     var password = ""
     var phone = ""
+    var dialCode = ""
     var dob = ""
     var address = ""
     var age = ""
@@ -43,6 +44,7 @@ class AppSharedData: NSObject {
     var long = ""
     
     var profession = ""
+    var allSelectedProfession = ""
     var isProvider = Bool()
     
    ///Guardian Information

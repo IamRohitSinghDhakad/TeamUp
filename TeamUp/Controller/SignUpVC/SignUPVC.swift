@@ -59,6 +59,7 @@ class SignUPVC: UIViewController,myCategoryDelegate {
     
     
     @IBAction func btnSignUp(_ sender: Any) {
+        
         if self.catId == "" {
         objAlert.showAlert(message: "Please Select Category", title: "", controller: self)
         }else if tfProffession.text == "" {
@@ -66,6 +67,8 @@ class SignUPVC: UIViewController,myCategoryDelegate {
         }else{
         let vc = storyboard?.instantiateViewController(identifier: "StepTwoSignUpVC") as! StepTwoSignUpVC
             AppSharedData.sharedObject().profession = self.tfProffession.text!
+            AppSharedData.sharedObject().allSelectedProfession = self.lblCategory.text!
+           
         self.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -43,7 +43,7 @@ class StepThreeSignUpVC: UIViewController,RSCountrySelectedDelegate {
     
     //MARK:- Protocol to get Country Info
     func RScountrySelected(countrySelected country: CountryInfo) {
-        let imagePath = "CountryPicker.bundle/\(country.country_code).png"
+      //  let imagePath = "CountryPicker.bundle/\(country.country_code).png"
        // self.imgVwFlag.image = UIImage(named: imagePath)
         strCountryDialCode = country.dial_code
         strCountryCode = country.country_code
@@ -60,7 +60,8 @@ class StepThreeSignUpVC: UIViewController,RSCountrySelectedDelegate {
         }else{
         let vc = storyboard?.instantiateViewController(identifier: "StepFourSignUpVC") as! StepFourSignUpVC
             AppSharedData.sharedObject().email = tfEmail.text!
-            AppSharedData.sharedObject().phone = tfPhone.text!
+            AppSharedData.sharedObject().phone = self.lblCountryCode.text! + tfPhone.text!
+            AppSharedData.sharedObject().dialCode = self.lblCountryCode.text!
             AppSharedData.sharedObject().password = tfPassword.text!
         self.navigationController?.pushViewController(vc, animated: true)
         }

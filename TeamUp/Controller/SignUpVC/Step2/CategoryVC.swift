@@ -9,13 +9,14 @@ import UIKit
 
 
 protocol myCategoryDelegate {
-    func getMyCategory(strTitle:String,strId:String)
+    func getMyCategory(strTitle:String,strId:String,strType: String)
 }
 
 class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tblCategoryList: UITableView!
     var arrCategory = NSMutableArray()
+    var arrProfessionCategory = NSMutableArray()
     var delegate:myCategoryDelegate?
     var arrSubCategory = NSMutableArray()
     
@@ -42,7 +43,10 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if strType == "SubCat" {
             return arrSubCategory.count
-        }else{
+        }else if strType == "proffesion"{
+            return self.arrProfessionCategory.count
+        }
+        else{
         return arrCategory.count
         }
         return Int()
@@ -55,7 +59,12 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             dict = arrSubCategory[indexPath.row] as! NSDictionary
             let title = dict.value(forKey: "sub_category_name")
               cell.lblTitle.text! = title as! String
-        }else{
+        }else if strType == "proffesion"{
+            dict = arrProfessionCategory[indexPath.row] as! NSDictionary
+            let title = dict.value(forKey: "profession_category_name")
+              cell.lblTitle.text! = title as! String
+        }
+        else{
             dict = arrCategory[indexPath.row] as! NSDictionary
             let title = dict.value(forKey: "category_name")
               cell.lblTitle.text! = title as! String
@@ -93,7 +102,31 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
             self.arrSubCategory.replaceObject(at: indexPath.row, with:dictData)
             self.tblCategoryList.reloadData()
-        }else{
+            
+        }else if strType == "proffesion"{
+            
+            let dict = arrProfessionCategory[indexPath.row] as? NSDictionary
+            let category_name = dict?.GetString(forKey: "profession_category_name")
+            let sub_category_id = dict?.GetString(forKey: "profession_category_id")
+            let entrydt = dict?.GetString(forKey: "entrydt")
+           // let category_id = dict?.GetInt(forKey: "category_id")
+            let status = dict?.GetInt(forKey: "status")
+            var dictData = NSMutableDictionary()
+            dictData.setValue(category_name, forKey: "profession_category_name")
+            dictData.setValue(entrydt, forKey: "entrydt")
+            dictData.setValue(sub_category_id, forKey: "profession_category_id")
+          //  dictData.setValue(category_id, forKey: "category_id")
+            dictData.setValue(status, forKey: "status")
+                if status == 1 {
+                    dictData.setValue(0, forKey: "status")
+                }else if status == 0 {
+                    dictData.setValue(1, forKey: "status")
+                }
+                self.arrProfessionCategory.replaceObject(at: indexPath.row, with:dictData)
+                self.tblCategoryList.reloadData()
+            
+        }
+        else{
             let dict = arrCategory[indexPath.row] as? NSDictionary
             let category_name = dict?.GetString(forKey: "category_name")
             let category_image = dict?.GetString(forKey: "category_image")
@@ -134,7 +167,19 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     strTitle = strTitle == "" ?strCat :"\(strTitle),\(strCat)"
                 }
             }
-        }else{
+        }else if strType == "proffesion"{
+            for i in 0..<arrProfessionCategory.count {
+                let dict = arrProfessionCategory.getNSDictionary(atIndex: i)
+                let status = dict.GetInt(forKey: "status")
+                let catId = dict.GetInt(forKey: "profession_category_id")
+                let strCat = dict.GetString(forKey: "profession_category_name")
+                if status == 0 {
+                    strId = strId == "" ?"\(catId)" :"\(strId),\(catId)"
+                    strTitle = strTitle == "" ?strCat :"\(strTitle),\(strCat)"
+                }
+            }
+        }
+        else{
             for i in 0..<arrCategory.count {
                 let dict = arrCategory.getNSDictionary(atIndex: i)
                 let status = dict.GetInt(forKey: "status")
@@ -148,7 +193,7 @@ class CategoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
         }
         
-        self.delegate?.getMyCategory(strTitle: strTitle, strId: strId)
+        self.delegate?.getMyCategory(strTitle: strTitle, strId: strId, strType: self.strType)
         self.dismiss(animated: true, completion: nil)
     }
     

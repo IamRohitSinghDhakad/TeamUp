@@ -182,13 +182,24 @@ extension EditProfileVC{
         self.tfDob.text! = dict.GetString(forKey: "dob")
         self.tfpassword.text! = dict.GetString(forKey: "password")
         
-        let image = dict.GetString(forKey: "user_image")
-        self.imgProfile.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-        let url = URL(string: image ?? "")
-            self.imgProfile.kf.setImage(with: url)
-            self.imageData = imgProfile.image?.jpegData(compressionQuality: 0.5)
-        }
+//        let image = dict.GetString(forKey: "user_image")
+//        self.imgProfile.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//        let url = URL(string: image ?? "")
+//            self.imgProfile.kf.setImage(with: url)
+//            self.imageData = imgProfile.image?.jpegData(compressionQuality: 0.5)
+//        }
+        
+       // if let user_image = dict.GetString(forKey: "user_image"){
+           let profilePic = dict.GetString(forKey: "user_image")
+            if profilePic != "" {
+                let url = URL(string: profilePic)
+                self.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+            }
+//        }else{
+//            self.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
+//        }
+
         
     }
 }

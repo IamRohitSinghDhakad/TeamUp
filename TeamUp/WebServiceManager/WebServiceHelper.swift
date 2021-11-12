@@ -29,6 +29,7 @@ struct WsUrl{
     static let url_get_conversation  = BASE_URL + "get_conversation"
     static let url_add_post  = BASE_URL + "add_post?"
     static let url_getChat = BASE_URL + "get_chat"
+    static let url_getProfession = BASE_URL + "get_profession_category"
    
   
     

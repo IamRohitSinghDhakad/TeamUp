@@ -16,6 +16,42 @@ class SettingsVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         self.navigationController?.title = "Settings"
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
+    }
+    
+    func rightNavButton(){
+
+        let frameSize = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 50, height: 30))
+        let customSwitch = UISwitch(frame: frameSize)
+
+        if AppSharedData.sharedObject().strToggleStatus == true{
+            customSwitch.isOn = true
+            customSwitch.setOn(true, animated: true)
+        }else{
+            customSwitch.isOn = false
+            customSwitch.setOn(false, animated: true)
+        }
+       
+        customSwitch.onTintColor = UIColor.lightGray
+       
+
+        customSwitch.addTarget(self, action: #selector(FindMeVC.switchTarget(sender:)), for: .valueChanged)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: customSwitch)
+    }
+
+
+    @objc func switchTarget(sender: UISwitch!)
+    {
+        if sender.isOn {
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "1")
+        } else{
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "0")
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.rightNavButton()
     }
     
     

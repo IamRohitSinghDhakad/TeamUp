@@ -76,12 +76,20 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.selectedIndex = indexPath
         cell.delegate = self
         
-        let image = dict?.GetString(forKey: "user_image")
-        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-        let url = URL(string: image ?? "")
-        cell.imgProfile.kf.setImage(with: url)
+//        let image = dict?.GetString(forKey: "user_image")
+//        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//        let url = URL(string: image ?? "")
+//        cell.imgProfile.kf.setImage(with: url)
+        
+        let profilePic = dict?.GetString(forKey: "user_image")
+         if profilePic != "" {
+             let url = URL(string: profilePic ?? "")
+             cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+         }else{
+             cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
         }
+    
         return cell
     }
     

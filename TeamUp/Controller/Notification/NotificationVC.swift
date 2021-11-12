@@ -22,6 +22,42 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.call_GetAppointMent()
     }
     
+    func rightNavButton(){
+
+        let frameSize = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 50, height: 30))
+        let customSwitch = UISwitch(frame: frameSize)
+
+        if AppSharedData.sharedObject().strToggleStatus == true{
+            customSwitch.isOn = true
+            customSwitch.setOn(true, animated: true)
+        }else{
+            customSwitch.isOn = false
+            customSwitch.setOn(false, animated: true)
+        }
+       
+        customSwitch.onTintColor = UIColor.lightGray
+       
+
+        customSwitch.addTarget(self, action: #selector(FindMeVC.switchTarget(sender:)), for: .valueChanged)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: customSwitch)
+    }
+
+
+    @objc func switchTarget(sender: UISwitch!)
+    {
+        if sender.isOn {
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "1")
+        } else{
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "0")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.rightNavButton()
+    }
+
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -37,12 +73,21 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
      
         cell.lblName.text! = "Your Appointment Shedule with \(dict?.GetString(forKey: "name") ?? "")"
         cell.lblTime.text! = dict?.GetString(forKey: "time_ago") ?? ""
-        let image = dict?.GetString(forKey: "user_image")
-        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-            let url = URL(string: image ?? "")
-            cell.imgProfile.kf.setImage(with: url)
+     //   let image = dict?.GetString(forKey: "user_image")
+        if let user_image = dict?.GetString(forKey: "user_image"){
+            let profilePic = user_image
+            if profilePic != "" {
+                let url = URL(string: profilePic)
+                cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+            }
+        }else{
+            cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
         }
+//        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//            let url = URL(string: image ?? "")
+//            cell.imgProfile.kf.setImage(with: url)
+//        }
         cell.delegate = self
         cell.indexPath = indexPath
         return cell

@@ -35,9 +35,43 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
         self.containerMedia.isHidden = false
         self.containerHistory.isHidden = true
         self.containerRatings.isHidden = true
+        
+       
     }
     
+    func rightNavButton(){
+
+        let frameSize = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 50, height: 30))
+        let customSwitch = UISwitch(frame: frameSize)
+
+        if AppSharedData.sharedObject().strToggleStatus == true{
+            customSwitch.isOn = true
+            customSwitch.setOn(true, animated: true)
+        }else{
+            customSwitch.isOn = false
+            customSwitch.setOn(false, animated: true)
+        }
+       
+        customSwitch.onTintColor = UIColor.lightGray
+       
+
+        customSwitch.addTarget(self, action: #selector(FindMeVC.switchTarget(sender:)), for: .valueChanged)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: customSwitch)
+    }
+
+
+    @objc func switchTarget(sender: UISwitch!)
+    {
+        if sender.isOn {
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "1")
+        } else{
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "0")
+        }
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
+        self.rightNavButton()
         if strType == "SearchView" {
         self.setData(dict: dictData)
             self.btnEdit.isHidden = true
@@ -58,12 +92,22 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
     func setData(dict:NSDictionary) {
         self.lblName.text! = "\(dict.GetString(forKey: "first_name")) \(dict.GetString(forKey: "last_name"))"
         self.lblSubTitle.text! = dict.GetString(forKey: "profession")
-        let image = dict.GetString(forKey: "user_image")
-        self.imgProfile.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-        let url = URL(string: image ?? "")
-            self.imgProfile.kf.setImage(with: url)
+       
+//        let image = dict.GetString(forKey: "user_image")
+//        self.imgProfile.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//        let url = URL(string: image ?? "")
+//            self.imgProfile.kf.setImage(with: url)
+//        }
+        
+        let profilePic = dict.GetString(forKey: "user_image")
+         if profilePic != "" {
+             let url = URL(string: profilePic)
+             self.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+         }else{
+             self.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
         }
+        
     }
 
     @IBAction func btnAddPost(_ sender: Any) {

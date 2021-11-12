@@ -19,23 +19,25 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     @IBOutlet weak var tfSkils: UITextField!
     //@IBOutlet weak var tfSportsSkill: DropDown!
     @IBOutlet weak var lblSubCategory: UILabel!
-    
     @IBOutlet weak var btnSportsSkill: UIButton!
     @IBOutlet weak var btnCheckMark: UIButton!
     @IBOutlet weak var btnPriceper: UIButton!
     @IBOutlet weak var btnFreeTeam: UIButton!
-    var arrSubCategory = NSMutableArray()
+    
     
     @IBOutlet weak var hgtSelectOneView: NSLayoutConstraint!
     @IBOutlet weak var vwAgeGroup: UIView!
     @IBOutlet weak var vwAddress: UIView!
     @IBOutlet weak var vwSchool: UIView!
     @IBOutlet weak var vwTeamFee: UIView!
-    var subCatId = String()
+    @IBOutlet weak var veTeamFreePlaceholder: UIView!
     @IBOutlet var vwSkillSpecialization: UIView!
     @IBOutlet var vwPerHourText: UIView!
     @IBOutlet var stackVwCoachingClubBtn: UIStackView!
+    @IBOutlet var vwCoachButton: UIView!
     
+    var subCatId = String()
+    var arrSubCategory = NSMutableArray()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -46,9 +48,8 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
         self.title = "Other Info"
         self.btnFreeTeam.setImage(UIImage(named: "circle"), for: .normal)
         self.navigationItem.setHidesBackButton(false, animated: true)
-        self.userAndProvider(isProvider: AppSharedData.sharedObject().isProvider)
+        //self.userAndProvider(isProvider: AppSharedData.sharedObject().isProvider)
         self.checkMarkSlectone(isCheckMark: true)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,11 +60,16 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
         
         if allCategory.contains("coach") || allCategory.contains("personal trainer") || allCategory.contains("specific skill trainer") {
             self.vwSkillSpecialization.isHidden = false
+            self.vwCoachButton.isHidden = false
+            
         }else{
             self.vwSkillSpecialization.isHidden = true
+            self.vwCoachButton.isHidden = true
         }
         
         if AppSharedData.sharedObject().isProvider{
+            self.veTeamFreePlaceholder.isHidden = false
+            self.vwTeamFee.isHidden = false
             if allCategory.contains("sports doctor"){
                 self.vwPerHourText.isHidden = true
             }else{
@@ -71,6 +77,8 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
             }
         }else{
             self.vwPerHourText.isHidden = true
+            self.veTeamFreePlaceholder.isHidden = true
+            self.vwTeamFee.isHidden = true
         }
         
     }
@@ -79,7 +87,7 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-  
+  /*
     func userAndProvider(isProvider:Bool) {
         if (isProvider) {
         self.hgtSelectOneView.constant = 112
@@ -89,6 +97,7 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
         self.hgtSelectOneView.constant = 0
         }
     }
+   */
     
     @IBAction func btnNext(_ sender: Any) {
         self.call_OtherInfo()
@@ -109,7 +118,7 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
         self.present(vc, animated: true, completion: nil)
     }
     
-    func getMyCategory(strTitle: String, strId: String) {
+    func getMyCategory(strTitle: String, strId: String, strType: String) {
         self.subCatId = strId
         
         self.lblSubCategory.text! = strTitle
@@ -135,12 +144,12 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
             if (isCheckMark) {
                 self.vwSchool.isHidden = true
                 self.vwAddress.isHidden = true
-                self.vwTeamFee.isHidden = true
+               // self.vwTeamFee.isHidden = true
                 self.vwAgeGroup.isHidden = true
             }else{
                 self.vwSchool.isHidden = false
                 self.vwAddress.isHidden = false
-                self.vwTeamFee.isHidden = false
+              //  self.vwTeamFee.isHidden = false
                 self.vwAgeGroup.isHidden = false
             }
         }
@@ -165,7 +174,7 @@ extension OtherInfoVC{
         }
         
         let dicrParam = ["password":AppSharedData.sharedObject().password,
-                         "type":"1",
+                         "type":AppSharedData.sharedObject().userType,
                          "first_name":AppSharedData.sharedObject().userFname,
                          "last_name":AppSharedData.sharedObject().userLastname,
                          "name":AppSharedData.sharedObject().userName+AppSharedData.sharedObject().userLastname,
@@ -175,6 +184,7 @@ extension OtherInfoVC{
                          "age":AppSharedData.sharedObject().age,
                          "address":AppSharedData.sharedObject().address,
                          "profession":AppSharedData.sharedObject().profession,
+                         "profession_category_id":AppSharedData.sharedObject().professionID,
                          "lat":AppSharedData.sharedObject().lat,
                          "lng":AppSharedData.sharedObject().long,
                          "category_id":AppSharedData.sharedObject().catId,
@@ -191,7 +201,9 @@ extension OtherInfoVC{
                          "club_address":tfAddress.text!,
                          "age_group":tfAgeGroup.text!,
                          "price":tfTeamFree.text!,
-                         "language":"En","register_id":"1"]as [String:Any]
+                         "language":AppSharedData.sharedObject().language,
+                         "register_id":"1"]as [String:Any]
+                         //"language":AppSharedData.sharedObject().language,
         
         objWebServiceManager.showIndicator()
         objWebServiceManager.requestGet(strURL: WsUrl.url_SignUp, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in

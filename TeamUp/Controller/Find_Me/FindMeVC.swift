@@ -15,10 +15,13 @@ class FindMeVC: UIViewController {
     @IBOutlet weak var tfSubCategory: DropDown!
     @IBOutlet weak var tfCategory: DropDown!
     @IBOutlet weak var btnLocation: UIButton!
+    @IBOutlet var tfProfessionCategory: DropDown!
+    
     
     let locationPicker = LocationPickerViewController()
     
     var arrSubCategory = NSMutableArray()
+    var arrProfession = NSMutableArray()
     var subCatId = String()
     var arrCategory = NSMutableArray()
     var catId = String()
@@ -30,8 +33,45 @@ class FindMeVC: UIViewController {
       //  self.title = "Find me"
         // Do any additional setup after loading the view.
         self.call_WsCategory()
+        self.call_WsProfessionCategory()
+       
     }
     
+    func rightNavButton(){
+
+        let frameSize = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 50, height: 30))
+        let customSwitch = UISwitch(frame: frameSize)
+
+        if AppSharedData.sharedObject().strToggleStatus == true{
+            customSwitch.isOn = true
+            customSwitch.setOn(true, animated: true)
+        }else{
+            customSwitch.isOn = false
+            customSwitch.setOn(false, animated: true)
+        }
+       
+        customSwitch.onTintColor = UIColor.lightGray
+        
+
+        customSwitch.addTarget(self, action: #selector(FindMeVC.switchTarget(sender:)), for: .valueChanged)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: customSwitch)
+    }
+
+
+    @objc func switchTarget(sender: UISwitch!)
+    {
+        if sender.isOn {
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "1")
+        } else{
+            AppSharedData.sharedObject().call_UpDateToggleStatus(strStatus: "0")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.rightNavButton()
+    }
   
     
     @IBAction func btnLocation(_ sender: Any) {
@@ -165,4 +205,50 @@ extension FindMeVC {
         }
     }
 
+}
+
+
+//MARK:- Call Webservice
+extension FindMeVC{
+    func call_WsProfessionCategory(){
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getProfession, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+         
+            if status == MessageConstant.k_StatusCode{
+                var arrProfessionCat = [String]()
+                if let user_details  = response["result"] as? NSArray {
+                    self.arrProfession = user_details.mutableCopy() as! NSMutableArray
+                    for i in 0..<user_details.count {
+                        let dict = user_details[i] as! NSDictionary
+                        arrProfessionCat.append(dict["profession_category_name"] as? String ?? "")
+                    }
+                    self.tfProfessionCategory.optionArray = arrProfessionCat
+                  
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                }
+            }
+            else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            objWebServiceManager.hideIndicator()
+        }
+    }
 }

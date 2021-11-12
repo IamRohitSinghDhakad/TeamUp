@@ -39,11 +39,20 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaTypeCell", for: indexPath) as! mediaTypeCell
         let dict = arrMedia[indexPath.row] as? NSDictionary
-        let image = dict?.GetString(forKey: "user_image")
-        cell.imgMedia.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-            let url = URL(string: image ?? "")
-            cell.imgMedia.kf.setImage(with: url)
+        
+//        let image = dict?.GetString(forKey: "user_image")
+//        cell.imgMedia.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//            let url = URL(string: image ?? "")
+//            cell.imgMedia.kf.setImage(with: url)
+//        }
+        
+        let profilePic = dict?.GetString(forKey: "user_image")
+         if profilePic != "" {
+             let url = URL(string: profilePic ?? "")
+             cell.imgMedia.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+         }else{
+             cell.imgMedia.image = #imageLiteral(resourceName: "DefaultUserIcon")
         }
         
         cell.imgMedia.layer.cornerRadius = 10

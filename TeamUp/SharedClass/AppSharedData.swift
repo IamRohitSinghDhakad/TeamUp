@@ -42,8 +42,10 @@ class AppSharedData: NSObject {
     var userName = ""
     var lat = ""
     var long = ""
-    
+    var userType = ""
     var profession = ""
+    var language = ""
+    var professionID = ""
     var allSelectedProfession = ""
     var isProvider = Bool()
     
@@ -57,6 +59,8 @@ class AppSharedData: NSObject {
     var guardianLat = ""
     var guardianLong = ""
     
+    //toggleStatus
+    var strToggleStatus = Bool()
     
     
     
@@ -127,6 +131,46 @@ class AppSharedData: NSObject {
         let navController = UINavigationController(rootViewController: vc)
         navController.isNavigationBarHidden = true
         appDelegate.window?.rootViewController = navController
+    }
+    
+    
+    func call_UpDateToggleStatus(strStatus:String){
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+           // objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        let dict = AppSharedData.getUserInfo()
+        
+      //  let param = ["statua":strStatus,
+       //              "user_id":dict["user_id"] ?? ""]as [String:Any]
+       // print(param)
+        let url  = WsUrl.url_update_profile + "user_id=\(dict["user_id"] ?? "")&status=\(strStatus)"
+        print(url)
+        objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            let json = response as NSDictionary
+            let status = json.GetInt(forKey: "status")
+            print(response)
+            objWebServiceManager.hideIndicator()
+            if status == 1 {
+                self.setProfileData(dict: json.GetNSDictionary(forKey: "result"))
+            }else{
+              //  objAlert.showAlert(message: "Data Not Found", title: "Alert", controller: self)
+            }
+        } failure: { (Error) in
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    func setProfileData(dict:NSDictionary) {
+        let status = dict.GetString(forKey: "status")
+        if status == "1"{
+            AppSharedData.sharedObject().strToggleStatus = true
+        }else{
+            AppSharedData.sharedObject().strToggleStatus = false
+        }
     }
     
 }

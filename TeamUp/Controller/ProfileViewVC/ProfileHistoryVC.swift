@@ -41,11 +41,20 @@ class ProfileHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         cell.lblName.text! = dict?.GetString(forKey: "name") ?? ""
         cell.lblSubTitle.text! = dict?.GetString(forKey: "message") ?? ""
         cell.lblTime.text! = timeInterval(timeAgo: dict?.GetString(forKey: "entrydt") ?? "")
-        let image = dict?.GetString(forKey: "user_image")
-        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
-        if image != "" {
-            let url = URL(string: image ?? "")
-            cell.imgProfile.kf.setImage(with: url)
+     
+//        let image = dict?.GetString(forKey: "user_image")
+//        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
+//        if image != "" {
+//            let url = URL(string: image ?? "")
+//            cell.imgProfile.kf.setImage(with: url)
+//        }
+        
+        let profilePic = dict?.GetString(forKey: "user_image")
+         if profilePic != "" {
+             let url = URL(string: profilePic ?? "")
+             cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+         }else{
+             cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
         }
         
        

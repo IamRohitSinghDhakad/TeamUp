@@ -29,9 +29,18 @@ class ViewProfileVC: UIViewController ,UICollectionViewDelegate,UICollectionView
         
         self.lblName.text! = dictData.GetString(forKey: "name")
         self.lblSubTitle.text! = dictData.GetString(forKey: "profession")
-        let image = dictData.GetString(forKey: "user_image")
-        let url = URL(string: image ?? "")
-        self.imgProfile.kf.setImage(with: url)
+//        let image = dictData.GetString(forKey: "user_image")
+//        let url = URL(string: image)
+//        self.imgProfile.kf.setImage(with: url)
+        
+        // if let user_image = dict.GetString(forKey: "user_image"){
+            let profilePic = dictData.GetString(forKey: "user_image")
+             if profilePic != "" {
+                 let url = URL(string: profilePic)
+                 self.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+             }else{
+                self.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
+            }
     }
     
     

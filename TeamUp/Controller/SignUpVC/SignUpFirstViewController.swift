@@ -9,6 +9,8 @@ import UIKit
 
 class SignUpFirstViewController: UIViewController {
 
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,12 +29,14 @@ class SignUpFirstViewController: UIViewController {
     
     @IBAction func btnOnUser(_ sender: Any) {
         AppSharedData.sharedObject().isProvider = false
+        AppSharedData.sharedObject().userType = "user"
         let vc = storyboard?.instantiateViewController(identifier: "StepTwoSignUpVC") as! StepTwoSignUpVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnOnProvider(_ sender: Any) {
         AppSharedData.sharedObject().isProvider = true
+        AppSharedData.sharedObject().userType = "provider"
         let vc = storyboard?.instantiateViewController(identifier: "SignUPVC") as! SignUPVC
         self.navigationController?.pushViewController(vc, animated: true)
     }

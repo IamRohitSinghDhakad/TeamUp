@@ -10,8 +10,6 @@ import iOSDropDown
 
 class OtherInfoVC: UIViewController,myCategoryDelegate{
     
-    
-
     @IBOutlet weak var tfAddress: UITextField!
     @IBOutlet weak var tfAgeGroup: UITextField!
     @IBOutlet weak var tfTeamFree: UITextField!
@@ -23,8 +21,6 @@ class OtherInfoVC: UIViewController,myCategoryDelegate{
     @IBOutlet weak var btnCheckMark: UIButton!
     @IBOutlet weak var btnPriceper: UIButton!
     @IBOutlet weak var btnFreeTeam: UIButton!
-    
-    
     @IBOutlet weak var hgtSelectOneView: NSLayoutConstraint!
     @IBOutlet weak var vwAgeGroup: UIView!
     @IBOutlet weak var vwAddress: UIView!

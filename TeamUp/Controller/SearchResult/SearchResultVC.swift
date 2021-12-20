@@ -11,8 +11,7 @@ import Kingfisher
 class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource,myViewDelegate,MyFilterDelegate {
     
     
-   
-    
+
     
     func callViewProfile(index: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileVC

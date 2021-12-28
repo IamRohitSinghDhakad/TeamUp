@@ -19,6 +19,7 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet var stackviewButtons: UIStackView!
     
     var delegate:sheduleAcceptDelegate?
     

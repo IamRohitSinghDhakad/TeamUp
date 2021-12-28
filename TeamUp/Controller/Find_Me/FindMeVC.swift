@@ -70,7 +70,14 @@ class FindMeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.rightNavButton()
+       // self.rightNavButton()
+        let dict = AppSharedData.getUserInfo()
+        let userInfo = dict["type"]as? String ?? ""
+        if userInfo != "user"{
+            self.rightNavButton()
+        }else{
+            
+        }
     }
   
     
@@ -90,13 +97,13 @@ class FindMeVC: UIViewController {
     }
 
     @IBAction func btnFindMe(_ sender: Any) {
-        if tfCategory.text! == "" {
-            objAlert.showAlert(message: "Please Select Category", title: "", controller: self)
-        }else if tfSubCategory.text! == "" {
-            objAlert.showAlert(message: "Please Select SubCategory", title: "", controller: self)
-        }else if (AppSharedData.sharedObject().lat == "") && (AppSharedData.sharedObject().long == "") {
-            objAlert.showAlert(message: "Please Select Location", title: "", controller: self)
-        }else{
+//        if tfCategory.text! == "" {
+//            objAlert.showAlert(message: "Please Select Category", title: "", controller: self)
+//        }else if tfSubCategory.text! == "" {
+//            objAlert.showAlert(message: "Please Select SubCategory", title: "", controller: self)
+//        }else if (AppSharedData.sharedObject().lat == "") && (AppSharedData.sharedObject().long == "") {
+//            objAlert.showAlert(message: "Please Select Location", title: "", controller: self)
+//        }else{
     let vc = storyboard?.instantiateViewController(identifier: "SearchResultVC") as! SearchResultVC
      vc.catId = self.catId
      vc.subCatId = self.subCatId
@@ -104,7 +111,7 @@ class FindMeVC: UIViewController {
         self.tfCategory.optionArray = NSArray() as! [String]
         self.tfSubCategory.optionArray = NSArray() as! [String]
         self.btnLocation.setTitle("", for: .normal)
-        }
+  //      }
     }
     
     

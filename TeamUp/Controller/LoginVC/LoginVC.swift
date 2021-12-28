@@ -13,7 +13,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -28,9 +27,7 @@ class LoginVC: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-
-    
+        
     @IBAction func btnDontHaveAcc(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "SignUpFirstViewController") as! SignUpFirstViewController
         self.navigationController?.pushViewController(vc, animated: true)

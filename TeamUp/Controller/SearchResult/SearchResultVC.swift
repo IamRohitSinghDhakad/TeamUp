@@ -10,25 +10,18 @@ import Kingfisher
 
 class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource,myViewDelegate,MyFilterDelegate {
     
-    
-
-    
     func callViewProfile(index: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as! ProfileVC
         vc.dictData = (arrUserList[index.row] as? NSDictionary)!
         vc.strType = "SearchView"
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    
 
     @IBOutlet weak var tblSearchList: UITableView!
+    
     var catId = String()
     var subCatId = String()
     var arrUserList = NSMutableArray()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +54,9 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+  
+        
         return arrUserList.count
     }
     
@@ -98,10 +94,6 @@ class SearchResultVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         vc.arrAnnotation = self.arrUserList
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-   
-    
-    
     
     func call_GetUserList(strLat:String,strlong:String,strRatings:String,strSort:String){
         if !objWebServiceManager.isNetworkAvailable(){

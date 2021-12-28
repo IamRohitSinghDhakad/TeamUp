@@ -8,23 +8,39 @@
 import UIKit
 import Kingfisher
 
+protocol ContainerToMaster {
+    func changeLabel(text:String)
+}
+
 class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
-    
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    var arrMedia = NSMutableArray()
     
+    var arrMedia = NSMutableArray()
+    var strID:String = ""
+    var dict = NSMutableDictionary()
+    var containerToMaster:ContainerToMaster?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-       
+        
+    
+    
+//        print(strID)
+//        print(dict)
+        
     }
     
+    func changeLabel(text: String) {
+        print(text)
+           // labelContainer.text = text
+        }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.call_GetPostHistory()
+        self.call_GetPostHistory(strID: strID)
     }
     
     
@@ -39,13 +55,6 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mediaTypeCell", for: indexPath) as! mediaTypeCell
         let dict = arrMedia[indexPath.row] as? NSDictionary
-        
-//        let image = dict?.GetString(forKey: "user_image")
-//        cell.imgMedia.image = UIImage(named: "DefaultUserIcon")
-//        if image != "" {
-//            let url = URL(string: image ?? "")
-//            cell.imgMedia.kf.setImage(with: url)
-//        }
         
         let profilePic = dict?.GetString(forKey: "user_image")
          if profilePic != "" {
@@ -69,7 +78,7 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     
-    func call_GetPostHistory(){
+    func call_GetPostHistory(strID:String){
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
@@ -78,7 +87,8 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         objWebServiceManager.showIndicator()
        
-        let url  = WsUrl.url_get_post+"?post_id=&post_by="
+        let url  = WsUrl.url_get_post+"?user_id=\(strID)"
+        //post_id=&post_by="
         
         objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()

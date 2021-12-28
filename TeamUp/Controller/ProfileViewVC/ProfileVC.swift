@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ProfileVC: BaseViewController,UICollectionViewDelegate {
+class ProfileVC: BaseViewController,UICollectionViewDelegate,ContainerToMaster {
+   
+    
   
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblSubTitle: UILabel!
@@ -15,17 +17,26 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
     @IBOutlet weak var containerMedia: UIView!
     @IBOutlet weak var containerHistory: UIView!
     @IBOutlet weak var containerRatings: UIView!
-    
-    
+    @IBOutlet var btnHistory: UIButton!
     @IBOutlet weak var btnAddPost: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnChat: UIButton!
     @IBOutlet weak var btnBookAppointMent: UIButton!
     
-    
-    
     var dictData = NSDictionary()
     var strType = String()
+    var containerViewController: ProfileMediaVC?
+    
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+       if segue.identifier == "ContainerMedia" {
+           containerViewController = segue.destination as? ProfileMediaVC
+           containerViewController!.containerToMaster = self
+       }
+   }
+    
+    func changeLabel(text: String) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +46,26 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
         self.containerMedia.isHidden = false
         self.containerHistory.isHidden = true
         self.containerRatings.isHidden = true
+        self.btnHistory.isHidden = true
+        print(dictData)
         
-       
+//        for subview in self.view.subviews {
+//            print(subview)
+//            if subview.isKind(of: containerMedia){
+//
+//            }
+////            if subview.isKind(of: ProfileMediaVC.self) {
+////                print(subview)
+////            }
+//        }
+        
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        containerViewController?.changeLabel(text: "Nice! It's work!")
+    }
+
     
     func rightNavButton(){
 
@@ -71,13 +99,38 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        self.rightNavButton()
+       // self.rightNavButton()
+        let dict = AppSharedData.getUserInfo()
+        let userInfo = dict["type"]as? String ?? ""
+        if userInfo != "user"{
+            self.rightNavButton()
+        }else{
+            
+        }
+        
         if strType == "SearchView" {
         self.setData(dict: dictData)
             self.btnEdit.isHidden = true
             self.btnChat.isHidden = false
             self.btnAddPost.isHidden = true
             self.btnBookAppointMent.isHidden = false
+        }else if strType == "Schedule"{
+            self.btnEdit.isHidden = true
+            self.btnChat.isHidden = false
+            self.btnAddPost.isHidden = true
+            self.btnBookAppointMent.isHidden = true
+            
+            if let user_image = dictData["user_image"] as? String{
+                let profilePic = user_image
+                if profilePic != "" {
+                    let url = URL(string: profilePic)
+                    self.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+                }
+            }
+            self.lblName.text = dictData["name"] as? String
+            let dict = AppSharedData.getUserInfo()
+            self.lblSubTitle.text = dict["name"]as? String ?? ""//objArray?["description"] as? String
+            
         }else{
         let dict = AppSharedData.getUserInfo()
         self.setData(dict: dict)
@@ -158,3 +211,12 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate {
 }
 
 
+extension UIView {
+    func subviews<T:UIView>(ofType WhatType:T.Type) -> [T] {
+        var result = self.subviews.compactMap {$0 as? T}
+        for sub in self.subviews {
+            result.append(contentsOf: sub.subviews(ofType:WhatType))
+        }
+        return result
+    }
+}

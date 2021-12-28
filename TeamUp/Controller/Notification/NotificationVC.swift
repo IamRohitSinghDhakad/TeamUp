@@ -11,15 +11,22 @@ import Kingfisher
 class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource,sheduleAcceptDelegate {
     
     @IBOutlet weak var tblNotification: UITableView!
+    @IBOutlet var VwButtons: UIView!
+    @IBOutlet var btnNewAppointments: UIButton!
+    @IBOutlet var btnAddAppointments: UIButton!
     
     var arrShedule = NSMutableArray()
+    var arrOldAppointment = NSMutableArray()
+    var arrNewAppointmnet = NSMutableArray()
+    var currentUser = ""
+    var strType = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblNotification.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
         tblNotification.delegate = self
         tblNotification.dataSource = self
-        self.call_GetAppointMent()
+       
     }
     
     func rightNavButton(){
@@ -42,6 +49,16 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: customSwitch)
     }
 
+    @IBAction func btnActionNewAppointments(_ sender: Any) {
+        self.strType = "NewAppointment"
+        self.tblNotification.reloadData()
+    }
+    
+    @IBAction func btnActionOldAppointments(_ sender: Any) {
+        self.strType = "OldAppointment"
+        self.tblNotification.reloadData()
+    }
+    
 
     @objc func switchTarget(sender: UISwitch!)
     {
@@ -54,7 +71,16 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.rightNavButton()
+        let dict = AppSharedData.getUserInfo()
+        self.currentUser = dict["type"]as? String ?? ""
+        if self.currentUser != "user"{
+            self.rightNavButton()
+            self.strType = "NewAppointment"
+            self.call_GetNewAppointMent()
+            self.call_GetOldAppointMent()
+        }else{
+            self.call_GetAppointMent()
+        }
     }
 
     
@@ -64,33 +90,97 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrShedule.count
+        if self.currentUser == "user"{
+            return arrShedule.count
+        }else{
+            if strType == "NewAppointment"{
+                return self.arrNewAppointmnet.count
+            }else{
+                return self.arrOldAppointment.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell") as! NotificationCell
-        let dict = arrShedule[indexPath.row] as? NSDictionary
-     
-        cell.lblName.text! = "Your Appointment Shedule with \(dict?.GetString(forKey: "name") ?? "")"
-        cell.lblTime.text! = dict?.GetString(forKey: "time_ago") ?? ""
-     //   let image = dict?.GetString(forKey: "user_image")
-        if let user_image = dict?.GetString(forKey: "user_image"){
-            let profilePic = user_image
-            if profilePic != "" {
-                let url = URL(string: profilePic)
-                cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+        
+        if self.currentUser == "user"{
+         
+            self.VwButtons.isHidden = true
+            
+            let dict = arrShedule[indexPath.row] as? NSDictionary
+         
+            cell.lblName.text! = "Your Appointment Shedule with \(dict?.GetString(forKey: "name") ?? "")"
+            cell.lblTime.text! = dict?.GetString(forKey: "time_ago") ?? ""
+            if let user_image = dict?.GetString(forKey: "user_image"){
+                let profilePic = user_image
+                if profilePic != "" {
+                    let url = URL(string: profilePic)
+                    cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+                }
+            }else{
+                cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
             }
+
+            cell.stackviewButtons.isHidden = true
+            cell.delegate = self
+            cell.indexPath = indexPath
+            
         }else{
-            cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
+            self.VwButtons.isHidden = false
+            if strType == "NewAppointment"{
+                let dict = arrNewAppointmnet[indexPath.row] as? NSDictionary
+             
+                cell.lblName.text! = "Your Appointment Shedule with \(dict?.GetString(forKey: "name") ?? "")"
+                cell.lblTime.text! = dict?.GetString(forKey: "time_ago") ?? ""
+                if let user_image = dict?.GetString(forKey: "user_image"){
+                    let profilePic = user_image
+                    if profilePic != "" {
+                        let url = URL(string: profilePic)
+                        cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+                    }
+                }else{
+                    cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
+                }
+  
+                cell.stackviewButtons.isHidden = false
+                cell.delegate = self
+                cell.indexPath = indexPath
+            }else{
+               
+                let dict = arrOldAppointment[indexPath.row] as? NSDictionary
+             
+                cell.lblName.text! = "Your Appointment Shedule with \(dict?.GetString(forKey: "name") ?? "")"
+                cell.lblTime.text! = dict?.GetString(forKey: "time_ago") ?? ""
+                if let user_image = dict?.GetString(forKey: "user_image"){
+                    let profilePic = user_image
+                    if profilePic != "" {
+                        let url = URL(string: profilePic)
+                        cell.imgProfile.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "DefaultUserIcon"))
+                    }
+                }else{
+                    cell.imgProfile.image = #imageLiteral(resourceName: "DefaultUserIcon")
+                }
+                cell.stackviewButtons.isHidden = true
+                cell.delegate = self
+                cell.indexPath = indexPath
+            }
         }
-//        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
-//        if image != "" {
-//            let url = URL(string: image ?? "")
-//            cell.imgProfile.kf.setImage(with: url)
-//        }
-        cell.delegate = self
-        cell.indexPath = indexPath
+        
+       
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SheduleRequestVC")as! SheduleRequestVC
+        
+        if strType == "NewAppointment"{
+            vc.objArray = self.arrNewAppointmnet[indexPath.row] as? NSDictionary
+        }else{
+            vc.objArray = self.arrOldAppointment[indexPath.row] as? NSDictionary
+        }
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func stringToDate(_ str: String)->Date{
@@ -235,9 +325,94 @@ extension NotificationVC  {
     }
 }
 
-
+//======================= Provider APi =========================//
+extension NotificationVC{
     
-
+    func call_GetOldAppointMent(){
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        let dict = AppSharedData.getUserInfo()
+        let url  = WsUrl.url_get_appointment+"?to_user_id=\(dict["user_id"] ?? "")&status=accept,complete"
+        
+        objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+         //   print(response)
+            if status == MessageConstant.k_StatusCode{
+                if let user_details  = response["result"] as? NSArray {
+                    print("user_details>>>>>\(user_details)")
+                    self.arrOldAppointment = user_details.mutableCopy() as! NSMutableArray
+                    if self.arrOldAppointment.count > 0 {
+                        self.tblNotification.displayBackgroundText(text: "")
+                    }else{
+                        self.tblNotification.displayBackgroundText(text: "No Record Found")
+                    }
+                    self.tblNotification.reloadData()
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            objWebServiceManager.hideIndicator()
+        }
+    }
     
-
-
+    
+    func call_GetNewAppointMent(){
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        let dict = AppSharedData.getUserInfo()
+        let url  = WsUrl.url_get_appointment+"?to_user_id=\(dict["user_id"] ?? "")&status=pending"
+        // user_id=\(dict["user_id"] ?? "")"
+        
+        objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+         //   print(response)
+            if status == MessageConstant.k_StatusCode{
+                if let user_details  = response["result"] as? NSArray {
+                    print("user_details>>>>>\(user_details)")
+                    self.arrNewAppointmnet = user_details.mutableCopy() as! NSMutableArray
+                    if self.arrNewAppointmnet.count > 0 {
+                        self.tblNotification.displayBackgroundText(text: "")
+                    }else{
+                        self.tblNotification.displayBackgroundText(text: "No Record Found")
+                    }
+                    self.tblNotification.reloadData()
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            objWebServiceManager.hideIndicator()
+        }
+    }
+}

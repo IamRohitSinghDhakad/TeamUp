@@ -59,7 +59,15 @@ class ChatUserList: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         self.call_GetChetList()
-        self.rightNavButton()
+       
+        let dict = AppSharedData.getUserInfo()
+        let userInfo = dict["type"]as? String ?? ""
+        print(userInfo)
+        if userInfo != "user"{
+            self.rightNavButton()
+        }else{
+            
+        }
     }
     
     
@@ -188,6 +196,7 @@ extension ChatUserList{
             let status = json.GetInt(forKey: "status")
             objWebServiceManager.hideIndicator()
             if status == 1 {
+                
                 self.setProfileData(dict: json.GetNSDictionary(forKey: "result"))
             }else{
                 objAlert.showAlert(message: "Data Not Found", title: "Alert", controller: self)
@@ -207,8 +216,15 @@ extension ChatUserList{
         }else{
             AppSharedData.sharedObject().strToggleStatus = false
         }
-        self.rightNavButton()
-      //  self.tfEmail.text! = dict.GetString(forKey: "email")
+        //self.rightNavButton()
+
+        let dict = AppSharedData.getUserInfo()
+        let userInfo = dict["type"]as? String ?? ""
+        if userInfo != "user"{
+            self.rightNavButton()
+        }else{
+            
+        }
 
         
     }

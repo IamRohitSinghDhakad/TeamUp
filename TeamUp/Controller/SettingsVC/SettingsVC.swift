@@ -51,7 +51,14 @@ class SettingsVC: BaseViewController,UITableViewDelegate,UITableViewDataSource {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.rightNavButton()
+       // self.rightNavButton()
+        let dict = AppSharedData.getUserInfo()
+        let userInfo = dict["type"]as? String ?? ""
+        if userInfo != "user"{
+            self.rightNavButton()
+        }else{
+            
+        }
     }
     
     

@@ -41,7 +41,16 @@ class ProfileRatingsVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         cell.lblSubTitle.text! = dict?.GetString(forKey: "review") ?? ""
         cell.ratingView.maxRating = 5//dict?.GetInt(forKey: "rating") ?? 0
         cell.ratingView.fullImage = UIImage(named: "star")!
-        cell.lblTime.text! = timeInterval(timeAgo: dict?.GetString(forKey: "entrydt") ?? "")
+       // cell.lblTime.text! = timeInterval(timeAgo: dict?.GetString(forKey: "entrydt") ?? "")
+        cell.lblTime.text = dict?.GetString(forKey: "date")
+        
+        if let rating = dict?.GetString(forKey: "rating"){
+            cell.ratingView.rating = Double(rating) ?? 0.0
+        }else if let rating = dict?.GetInt(forKey: "rating"){
+            cell.ratingView.rating = Double(rating)
+        }else if let rating = dict?.GetDouble(forKey: "rating"){
+            cell.ratingView.rating = rating
+        }
         
 //        let image = dict?.GetString(forKey: "user_image")
 //        cell.imgProfile.image = UIImage(named: "DefaultUserIcon")
@@ -78,7 +87,7 @@ class ProfileRatingsVC: UIViewController,UITableViewDelegate,UITableViewDataSour
             objWebServiceManager.hideIndicator()
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
-            //   print(response)
+               print(response)
             if status == MessageConstant.k_StatusCode{
                 if let user_details  = response["result"] as? NSArray {
                     print("user_details>>>>>\(user_details)")

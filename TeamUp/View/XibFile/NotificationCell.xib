@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9b0-RM-BVO">
-                        <rect key="frame" x="104" y="55.5" width="138" height="27"/>
+                        <rect key="frame" x="104" y="68" width="138" height="27"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwn-ye-fkU">
                                 <rect key="frame" x="0.0" y="0.0" width="65" height="27"/>
@@ -69,7 +70,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29 mins ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSj-O5-sfe">
-                        <rect key="frame" x="248" y="57.5" width="56" height="14.5"/>
+                        <rect key="frame" x="106" y="51.5" width="69.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -87,11 +88,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="h1L-NM-O3L" firstAttribute="leading" secondItem="SA7-SQ-gAR" secondAttribute="trailing" constant="8" symbolic="YES" id="0Vw-RI-882"/>
-                    <constraint firstItem="jSj-O5-sfe" firstAttribute="top" secondItem="h1L-NM-O3L" secondAttribute="bottom" constant="8" id="1Wg-0a-7cv"/>
-                    <constraint firstItem="jSj-O5-sfe" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2P2-7B-PtX"/>
-                    <constraint firstItem="9b0-RM-BVO" firstAttribute="top" secondItem="h1L-NM-O3L" secondAttribute="bottom" constant="6" id="Px3-Ho-QoJ"/>
+                    <constraint firstItem="jSj-O5-sfe" firstAttribute="leading" secondItem="SA7-SQ-gAR" secondAttribute="trailing" constant="10" id="0wg-jR-W8D"/>
+                    <constraint firstItem="jSj-O5-sfe" firstAttribute="top" secondItem="h1L-NM-O3L" secondAttribute="bottom" constant="2" id="1Wg-0a-7cv"/>
+                    <constraint firstItem="9b0-RM-BVO" firstAttribute="top" secondItem="jSj-O5-sfe" secondAttribute="bottom" constant="2" id="F2Z-a8-t2L"/>
                     <constraint firstItem="lJs-BY-beV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="UWk-as-esT"/>
-                    <constraint firstItem="jSj-O5-sfe" firstAttribute="leading" secondItem="9b0-RM-BVO" secondAttribute="trailing" constant="6" id="a2Z-br-MlN"/>
                     <constraint firstItem="SA7-SQ-gAR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="aOv-zf-Dlf"/>
                     <constraint firstItem="SA7-SQ-gAR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cNn-EG-6SR"/>
                     <constraint firstItem="h1L-NM-O3L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="fXM-Ed-acd"/>
@@ -109,6 +109,7 @@
                 <outlet property="imgProfile" destination="SA7-SQ-gAR" id="VL3-9O-jbI"/>
                 <outlet property="lblName" destination="h1L-NM-O3L" id="JaR-H6-3As"/>
                 <outlet property="lblTime" destination="jSj-O5-sfe" id="gee-nT-24U"/>
+                <outlet property="stackviewButtons" destination="9b0-RM-BVO" id="Jhc-0U-FGT"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="91.741071428571431"/>
         </tableViewCell>

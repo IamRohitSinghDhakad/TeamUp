@@ -274,6 +274,7 @@ extension EditProfileVC{
      @objc func cancelDatePicker(){
         self.view.endEditing(true)
       }
+    
     func getAgeFromDOF(date: String) -> (Int,Int,Int) {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd-MM-YYYY"

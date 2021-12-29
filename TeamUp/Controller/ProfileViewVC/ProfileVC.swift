@@ -8,9 +8,7 @@
 import UIKit
 
 class ProfileVC: BaseViewController,UICollectionViewDelegate,ContainerToMaster {
-   
-    
-  
+
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblSubTitle: UILabel!
     @IBOutlet weak var lblName: UILabel!

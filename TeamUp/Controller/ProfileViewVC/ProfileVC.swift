@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileVC: BaseViewController,UICollectionViewDelegate,ContainerToMaster {
+class ProfileVC: BaseViewController,UICollectionViewDelegate {
 
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblSubTitle: UILabel!
@@ -24,18 +24,7 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate,ContainerToMaster {
     var dictData = NSDictionary()
     var strType = String()
     var containerViewController: ProfileMediaVC?
-    
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       if segue.identifier == "ContainerMedia" {
-           containerViewController = segue.destination as? ProfileMediaVC
-           containerViewController!.containerToMaster = self
-       }
-   }
-    
-    func changeLabel(text: String) {
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.title = "Profile"
@@ -45,23 +34,12 @@ class ProfileVC: BaseViewController,UICollectionViewDelegate,ContainerToMaster {
         self.containerHistory.isHidden = true
         self.containerRatings.isHidden = true
         self.btnHistory.isHidden = true
-        print(dictData)
-        
-//        for subview in self.view.subviews {
-//            print(subview)
-//            if subview.isKind(of: containerMedia){
-//
-//            }
-////            if subview.isKind(of: ProfileMediaVC.self) {
-////                print(subview)
-////            }
-//        }
-        
+        objAppShareData.strProfileID = dictData.GetString(forKey: "from_user_id")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        containerViewController?.changeLabel(text: "Nice! It's work!")
+    
     }
 
     
@@ -217,4 +195,18 @@ extension UIView {
         }
         return result
     }
+}
+
+
+extension UIViewController {
+  func getContainerChild<vc:UIViewController>(_ viewController : vc,_ hasNavigation : Bool = true) -> (vc) {
+    guard let vc = self.children[0] as? UINavigationController else {return viewController}
+    if hasNavigation {
+        guard let childVC = vc.children[0] as? ProfileMediaVC else {
+            return viewController}
+        return childVC as! vc
+    } else {
+        return vc as! vc
+    }
+   }
 }

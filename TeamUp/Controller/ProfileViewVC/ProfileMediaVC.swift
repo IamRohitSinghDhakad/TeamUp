@@ -8,9 +8,6 @@
 import UIKit
 import Kingfisher
 
-protocol ContainerToMaster {
-    func changeLabel(text:String)
-}
 
 class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
@@ -19,28 +16,19 @@ class ProfileMediaVC: UIViewController,UICollectionViewDataSource,UICollectionVi
     var arrMedia = NSMutableArray()
     var strID:String = ""
     var dict = NSMutableDictionary()
-    var containerToMaster:ContainerToMaster?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
-    
-    
-//        print(strID)
-//        print(dict)
-        
+      
     }
     
-    func changeLabel(text: String) {
-        print(text)
-           // labelContainer.text = text
-        }
-    
+   
     
     override func viewWillAppear(_ animated: Bool) {
-        self.call_GetPostHistory(strID: strID)
+    let d = objAppShareData.strProfileID
+    self.call_GetPostHistory(strID: d)
     }
     
     

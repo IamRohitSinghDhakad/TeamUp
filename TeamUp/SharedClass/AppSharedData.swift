@@ -59,6 +59,8 @@ class AppSharedData: NSObject {
     var guardianLat = ""
     var guardianLong = ""
     
+    
+    var strProfileID = ""
     //toggleStatus
     var strToggleStatus = Bool()
     

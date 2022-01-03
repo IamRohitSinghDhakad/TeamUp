@@ -19,7 +19,9 @@ class SheduleRequestVC: BaseViewController {
     @IBOutlet weak var tfSports: UITextField!
     @IBOutlet var lblDate: UILabel!
     @IBOutlet var lblTime: UILabel!
+    @IBOutlet var vwAcceptReject: UIView!
     @IBOutlet var lblDescriptions: UILabel!
+    
     
     var objArray:NSDictionary?
     
@@ -27,6 +29,12 @@ class SheduleRequestVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if objArray?.GetString(forKey: "status") == "pending"{
+            self.vwAcceptReject.isHidden = false
+        }else{
+            self.vwAcceptReject.isHidden = true
+        }
         
         self.lblDate.text = "Booking Date"
         self.lblTime.text = "Booking Time"

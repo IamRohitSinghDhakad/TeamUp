@@ -174,12 +174,15 @@ class NotificationVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SheduleRequestVC")as! SheduleRequestVC
         
-        if strType == "NewAppointment"{
-            vc.objArray = self.arrNewAppointmnet[indexPath.row] as? NSDictionary
+        if self.currentUser != "user"{
+            if strType == "NewAppointment"{
+                vc.objArray = self.arrNewAppointmnet[indexPath.row] as? NSDictionary
+            }else{
+                vc.objArray = self.arrOldAppointment[indexPath.row] as? NSDictionary
+            }
         }else{
-            vc.objArray = self.arrOldAppointment[indexPath.row] as? NSDictionary
+            vc.objArray = self.arrShedule[indexPath.row] as? NSDictionary
         }
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

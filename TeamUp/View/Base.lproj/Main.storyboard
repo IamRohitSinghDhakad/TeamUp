@@ -2406,6 +2406,7 @@
                         <outlet property="tfCategory" destination="eQu-a8-edZ" id="TY6-iu-IKQ"/>
                         <outlet property="tfLocation" destination="kag-Nj-Z03" id="1aj-dT-ffj"/>
                         <outlet property="tfSports" destination="rvs-FD-TBY" id="nol-HB-drR"/>
+                        <outlet property="vwAcceptReject" destination="2Iq-Qt-BCC" id="H4Z-cO-hZ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcr-DU-ENt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -5777,6 +5778,20 @@
             <point key="canvasLocation" x="12363" y="-140"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="9eN-KK-Lx5">
+            <size key="intrinsicContentSize" width="10" height="36.5"/>
+        </designable>
+        <designable name="Ijq-3q-XcO">
+            <size key="intrinsicContentSize" width="175.5" height="18.5"/>
+        </designable>
+        <designable name="N75-ai-agQ">
+            <size key="intrinsicContentSize" width="129" height="18.5"/>
+        </designable>
+        <designable name="eu6-pA-ImV">
+            <size key="intrinsicContentSize" width="104" height="18.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="   " width="128" height="128"/>
         <image name="DefaultUserIcon" width="41" height="41.5"/>
@@ -5795,7 +5810,7 @@
         <image name="four" width="350" height="42.5"/>
         <image name="goa" width="300" height="178.5"/>
         <image name="gps" width="42.5" height="42.5"/>
-        <image name="loc" width="11" height="15.5"/>
+        <image name="loc" width="24" height="29.5"/>
         <image name="logo" width="133.5" height="141"/>
         <image name="next" width="6" height="9.5"/>
         <image name="next_arrow" width="34.5" height="27"/>

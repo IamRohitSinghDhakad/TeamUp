@@ -1,9 +1,28 @@
 PODS:
   - Alamofire (5.4.3)
+  - Braintree (5.5.0):
+    - Braintree/Card (= 5.5.0)
+    - Braintree/Core (= 5.5.0)
+    - Braintree/PayPal (= 5.5.0)
+  - Braintree/Card (5.5.0):
+    - Braintree/Core
+  - Braintree/Core (5.5.0)
+  - Braintree/PayPal (5.5.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.5.0)
+  - CardIO (5.4.1)
   - iOSDropDown (0.3.4)
   - IQKeyboardManagerSwift (6.5.6)
   - Kingfisher (7.0.0)
   - LocationPicker (1.4.2)
+  - PayPal-iOS-SDK (2.18.1):
+    - PayPal-iOS-SDK/CardIO (= 2.18.1)
+    - PayPal-iOS-SDK/Core (= 2.18.1)
+  - PayPal-iOS-SDK/CardIO (2.18.1):
+    - CardIO (~> 5.4.1)
+  - PayPal-iOS-SDK/Core (2.18.1)
+  - PayPalCheckout (0.81.0)
   - SDWebImage/Core (5.11.1)
   - SDWebImage/MapKit (5.11.1):
     - SDWebImage/Core
@@ -11,32 +30,43 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Braintree
   - iOSDropDown
   - IQKeyboardManagerSwift
   - Kingfisher
   - LocationPicker
+  - PayPal-iOS-SDK
+  - PayPalCheckout
   - SDWebImage/MapKit
   - SVProgressHUD
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Braintree
+    - CardIO
     - iOSDropDown
     - IQKeyboardManagerSwift
     - Kingfisher
     - LocationPicker
+    - PayPal-iOS-SDK
+    - PayPalCheckout
     - SDWebImage
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Braintree: acd5dd18b4aff8858346d6b6f6f3b5bc059332fb
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   LocationPicker: 9af49409ec3ca13fdf4bf6b39e1a3c7dec029f4a
+  PayPal-iOS-SDK: 70d56697aef502c130b9840e31dea5c6b8a350e1
+  PayPalCheckout: a32d08709c76f52265315c45f179f468042f8b04
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 81a3c31d19233e942020a8ad559e1cddb52cac17
+PODFILE CHECKSUM: bf4682ab25a93c6137eb6dfaed415ffefcad220f
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

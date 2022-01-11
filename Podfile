@@ -13,6 +13,11 @@ target 'TeamUp' do
   pod 'iOSDropDown'
   pod 'LocationPicker'
   pod 'Kingfisher'
+  
+  pod 'PayPal-iOS-SDK'
+  pod 'PayPalCheckout'
+  pod 'Braintree'
+
 
   target 'TeamUpTests' do
     inherit! :search_paths
